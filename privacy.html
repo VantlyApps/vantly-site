@@ -86,19 +86,21 @@ footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--m
     <li><strong>Shipping services</strong>, only when the merchant connects them (ShipStation, EasyPost, or a carrier such as UPS): names and addresses needed to create a return label.</li>
     <li><strong>Katana</strong>, only when the merchant connects it: product SKUs and quantities, to restock returned items. No customer information is sent.</li>
     <li><strong>Klaviyo</strong>, only when the merchant connects it: the customer's name and email address and details of the return, sent to the merchant's own Klaviyo account so the merchant can send emails.</li>
-    <li><strong>Hosting provider</strong>: stores the app's database, encrypted at rest.</li>
+    <li><strong>Hosting providers (Render and Neon)</strong>: run the app and store its database, encrypted at rest.</li>
+    <li><strong>Slack or a webhook address</strong>, only when the merchant connects them: return details, including the customer's name or email, sent to the merchant's own channel or system.</li>
   </ul>
 
   <h2>How long we keep it</h2>
   <ul>
     <li>Return records are deleted automatically 24 months after the return is closed.</li>
+    <li>The access log (which staff member viewed which returns) is kept for 12 months.</li>
     <li>When a merchant uninstalls Vantly, Shopify sends us a deletion request and we delete all of that store's data.</li>
     <li>When a customer asks a merchant to delete their data, Shopify tells us and we delete that customer's return records.</li>
     <li>Photos customers upload are stored in the merchant's own Shopify files, which the merchant controls.</li>
   </ul>
 
   <h2>Security</h2>
-  <p>All connections use HTTPS. The database and its backups are encrypted at rest, and connected API keys are encrypted with a separate key. Access to production data is limited to people who need it to run the service.</p>
+  <p>All connections use HTTPS. The database and its backups are encrypted at rest, and connected API keys are encrypted with a separate key. Access to production data is limited to people who need it to run the service. Details, including how we handle incidents, are on our <a href="/security">Security page</a>. Our terms as a data processor are in the <a href="/dpa">Data Processing Agreement</a>.</p>
 
   <h2>Your rights</h2>
   <p><strong>Customers</strong> can ask the store they bought from to access, correct, or delete their information. The store passes the request to us through Shopify, and we act on it. <strong>Merchants</strong> can contact us directly for access to or deletion of their data.</p>
@@ -111,7 +113,7 @@ footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--m
 </main>
 
 <footer>
-  <div class="wrap">© 2026 Vantly · <a href="/">vantlyapps.com</a></div>
+  <div class="wrap">© 2026 Vantly · <a href="/privacy">Privacy</a> · <a href="/security">Security</a> · <a href="/dpa">Data Processing Agreement</a> · <a href="/">vantlyapps.com</a></div>
 </footer>
 </body>
 </html>
