@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Return rules · Vantly Returns Help</title>
+<meta name="description" content="Give products their own window, options, fees, and return reasons.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root { --bg:#FFFFFF; --soft:#FAFAFA; --line:#E5E5E7; --ink:#111113; --muted:#62626B; --teal:#0F6E56; --mint:#5DCAA5; color-scheme: light; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#0B0B0C; --soft:#141416; --line:#2A2A2E; --ink:#F4F4F5; --muted:#A1A1AA; --teal:#3CC39A; color-scheme: dark; } }
+:root[data-theme="dark"] { --bg:#0B0B0C; --soft:#141416; --line:#2A2A2E; --ink:#F4F4F5; --muted:#A1A1AA; --teal:#3CC39A; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 "Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; -webkit-font-smoothing:antialiased; }
+a { color:var(--teal); }
+.wrap { max-width:960px; margin:0 auto; padding:0 16px; }
+.nav { border-bottom:1px solid var(--line); }
+.nav .wrap { display:flex; align-items:center; gap:18px; min-height:64px; }
+.brand { display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink); font:700 22px "Inter Tight","Inter",sans-serif; letter-spacing:-0.03em; }
+.brand svg { width:28px; height:28px; }
+.nav .crumb { color:var(--muted); text-decoration:none; font-weight:600; }
+main { padding:44px 0 72px; }
+h1 { font:700 clamp(2rem,5vw,2.8rem)/1.08 "Inter Tight","Inter",sans-serif; letter-spacing:-0.03em; margin:0 0 10px; }
+h2 { font:700 1.2rem/1.3 "Inter Tight","Inter",sans-serif; letter-spacing:-0.015em; margin:34px 0 8px; }
+.lede { color:var(--muted); font-size:1.1rem; margin:0 0 30px; max-width:40em; }
+.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px; }
+.card { display:grid; gap:6px; padding:18px; border:1px solid var(--line); border-radius:14px; text-decoration:none; color:var(--ink); background:var(--bg); transition:border-color .2s, transform .2s, box-shadow .2s; }
+.card:hover { border-color:color-mix(in srgb, var(--teal) 45%, var(--line)); transform:translateY(-2px); box-shadow:0 12px 28px -20px rgba(0,0,0,.35); }
+.card strong { font-size:1.02rem; }
+.card span { color:var(--muted); font-size:.94rem; line-height:1.45; }
+.article { max-width:720px; }
+.article li { margin:6px 0; }
+code { background:var(--soft); border:1px solid var(--line); border-radius:6px; padding:1px 6px; font-size:.9em; }
+.table { width:100%; border:1px solid var(--line); border-radius:12px; border-collapse:separate; border-spacing:0; overflow:hidden; margin:12px 0; }
+.table th, .table td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); font-size:15px; }
+.table th { background:var(--soft); }
+.table tr:last-child td { border-bottom:0; }
+details { border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin:8px 0; }
+summary { cursor:pointer; font-weight:600; }
+details p { margin:10px 0 0; color:var(--muted); }
+.more { margin-top:44px; padding-top:22px; border-top:1px solid var(--line); color:var(--muted); }
+footer { border-top:1px solid var(--line); padding:28px 0 40px; color:var(--muted); font-size:14px; }
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Main"><div class="wrap">
+  <a class="brand" href="/" aria-label="Vantly home"><svg viewBox="12 9 40 48" aria-hidden="true"><g transform="translate(1.5 6)"><path d="M16 20 L30 46 L41 25 C45 17 42 11 35 11 L31 11" fill="none" stroke="#0F6E56" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 11 L32 6 L32 16 Z" fill="#5DCAA5" stroke="#5DCAA5" stroke-width="2" stroke-linejoin="round"/></g></svg> vantly</a>
+  <a class="crumb" href="/help">Help center</a>
+</div></nav>
+<main class="wrap">
+<article class="article">
+<h1>Return rules</h1>
+<p class="lede">Give products their own window, options, fees, and return reasons.</p>
+
+<p>Your <strong>default settings</strong> cover every product. <strong>Rules</strong> change the terms for the products they match, like a longer window for machines or final sale for clearance items.</p>
+<h2>How rules are checked</h2>
+<p>Rules are checked from the top of the list, and each item follows the <strong>first rule that matches it</strong>. Anything no rule matches uses your default settings, which are always the last row. Use the arrows to change the order, and put narrow rules (like final sale) above broad ones.</p>
+<h2>Create a rule</h2>
+<p>Go to <strong>Rules › Create rule</strong>.</p>
+<ul>
+<li><strong>Applies to</strong>: product tag, type, vendor, collection, SKU, price, order details, or customer tags. Match any or all of them.</li>
+<li><strong>Returns</strong>: returnable or final sale, and the return window.</li>
+<li><strong>Return options</strong>: which of refund, store credit, exchange, and replacement customers can choose.</li>
+<li><strong>Fees and bonus</strong>: restocking fee, return shipping fee, and bonus credit. Leave a field blank to use your default.</li>
+<li><strong>When opened</strong>: different terms for opened items, like store credit or exchange only. The portal then asks customers whether each item was opened.</li>
+<li><strong>Return reasons</strong>: a reason list just for these products (for example, masks: Air leaks, Uncomfortable, Doesn't fit). End a reason with <code>*</code> to require a photo.</li>
+<li><strong>Extras</strong>: require a photo, approve automatically, let the customer keep the item (always, or only the first time), and show a message.</li>
+</ul>
+<h2>Advanced rules</h2>
+<p>For cases a simple rule can't cover, like the return reason, a discount code, or a customer's past returns, use <strong>Create advanced rule</strong>. It combines any conditions with any actions.</p>
+<h2>Test before going live</h2>
+<p><strong>Test on an order</strong> shows exactly which rules apply to a real order and why.</p>
+
+<p class="more">Next: <a href="/help/exchanges">Exchanges and store credit</a> · Questions? <a href="mailto:support@vantlyapps.com">support@vantlyapps.com</a></p>
+</article>
+</main>
+<footer><div class="wrap">© 2026 Vantly · <a href="/">vantlyapps.com</a> · <a href="/privacy">Privacy</a></div></footer>
+</body>
+</html>
