@@ -133,6 +133,13 @@ ARTICLES = [
         "summary": "Buy return labels with ShipStation or EasyPost, automatically or by hand.",
         "body": """
 <p>Vantly can buy return labels with your own carrier accounts and rates, then email them to the customer.</p>
+<h2>Which carriers?</h2>
+<p>Vantly connects to carriers <strong>through ShipStation or EasyPost</strong>, not one carrier at a time. Connect either one and you can use <strong>USPS, UPS, FedEx, DHL</strong>, and any other carrier in that account:</p>
+<ul>
+<li><strong>ShipStation</strong>: the carriers you've connected in ShipStation, at your ShipStation rates.</li>
+<li><strong>EasyPost</strong>: EasyPost's discounted USPS, UPS, and FedEx rates, or your own carrier accounts added in EasyPost.</li>
+</ul>
+<p>A direct UPS connection is coming soon. Don't use either one? You can still add a label by hand on any return (paste a tracking number and label link).</p>
 <h2>Connect an account</h2>
 <p>Go to <strong>Integrations</strong> and open <strong>ShipStation</strong> or <strong>EasyPost</strong>. Paste your API key. Vantly lists the carriers connected to that account.</p>
 <h2>Label rules</h2>
@@ -218,6 +225,7 @@ ARTICLES = [
 
 FAQ = [
     ("Does it create real Shopify returns?", "Yes. Each return is created in Shopify, so refunds, restocking, and reports stay in your Shopify admin."),
+    ("Can I connect USPS, UPS, FedEx, or DHL directly?", "Vantly connects to carriers through ShipStation or EasyPost. Connect either one and you can use USPS, UPS, FedEx, DHL, and the other carriers in that account, at your own rates (or EasyPost's discounted rates). A direct UPS connection is coming soon. No shipping account? You can still add a label by hand on any return."),
     ("Do customers need an account?", "No. They find their order with the order number and email."),
     ("Does it work with my theme?", "Yes. The portal and the protection widget are built to fit any theme. The widget's colors and text are yours."),
     ("What happens if I go over my plan's returns?", "Nothing stops. You'll see a notice with the plan that fits."),
