@@ -258,7 +258,7 @@ CANCEL_ARTICLES = [
 <li>If they cancel, the items are refunded and restocked, and the order is tagged <code>vantly-cancelled</code>.</li>
 </ul>
 <h2>Where customers find it</h2>
-<p>The portal lives at <code>yourstore.com/apps/cancel</code>. Link it from your order confirmation email, your FAQ, and your account page.</p>
+<p>The portal lives at <code>yourstore.com/apps/cancel</code>. Link it from your Shopify order confirmation, your FAQ, and your account page.</p>
 """,
     },
     {
@@ -332,7 +332,7 @@ CANCEL_ARTICLES = [
 <li><strong>History</strong>: every step with times, from the hold to the refund.</li>
 </ul>
 <h2>Approvals</h2>
-<p>When a rule says <strong>Needs approval</strong>, the order stays paused. Click <strong>Approve cancel</strong> to refund and restock, or <strong>Decline</strong> to keep the order and resume shipping. The customer gets an email either way.</p>
+<p>When a rule says <strong>Needs approval</strong>, the order stays paused. Click <strong>Approve cancel</strong> to refund and restock, or <strong>Decline</strong> to keep the order and resume shipping. Vantly Cancellations doesn't send its own emails; Shopify's standard notifications (like order cancelled and refund) go out from your Shopify settings.</p>
 """,
     },
     {
