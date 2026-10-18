@@ -363,6 +363,7 @@ CANCEL_FAQ = [
     ("What if the order has already shipped?", "The portal won't cancel it. You can point customers to your return portal instead."),
     ("Does it work with Vantly Returns?", "Yes. Both share your portal branding, and they're built to be used together."),
     ("Do customers need an account?", "No. They find their order with the order number and email."),
+    ("Does Vantly send emails to my customers?", "No. Shopify's own notifications (order cancelled, refund, payment link) go out from your Shopify settings."),
 ]
 
 CSS = """
