@@ -233,6 +233,138 @@ FAQ = [
     ("What happens to my data if I uninstall?", "All of your store's data is deleted after Shopify's deletion request. See the privacy policy."),
 ]
 
+
+# ---------------- Vantly Cancellations (coming soon) ----------------
+# Served at vantlyapps.com/help/cancellations/<slug>
+CANCEL_ARTICLES = [
+    {
+        "slug": "how-it-works",
+        "title": "How Vantly Cancellations works",
+        "summary": "The cancel portal, step by step, from the customer's side and yours.",
+        "body": """
+<p>Vantly Cancellations gives your customers a self-serve page to cancel an order before it ships. Before they confirm, they tell you why and see an offer made for that reason. They can always still cancel.</p>
+<h2>What the customer sees</h2>
+<ol>
+<li><strong>Find order.</strong> They enter their order number and email. No account needed.</li>
+<li><strong>Items and reason.</strong> Every item is selected. They untick anything they want to keep, then pick a reason for what they're cancelling. Follow-up questions open under the reason when you've set them up.</li>
+<li><strong>Review.</strong> They see the offer you set for that reason, like a product that solves the problem, a discount, or a size swap. Two buttons: <strong>Keep my order</strong> or <strong>Cancel anyway</strong>, with the refund amount shown.</li>
+<li><strong>Done.</strong> A clear confirmation: what was cancelled, what still ships, and when the refund arrives.</li>
+</ol>
+<h2>What happens behind the scenes</h2>
+<ul>
+<li>As soon as a customer starts, the order is put on a <strong>fulfillment hold</strong>, so your warehouse doesn't ship it mid-decision.</li>
+<li><a href="/help/cancellations/rules">Rules</a> decide if the cancel goes through right away, waits for your approval, or isn't allowed.</li>
+<li>If they keep the order, the hold is released and the order ships. Anything they added from an offer goes on the same order.</li>
+<li>If they cancel, the items are refunded and restocked, and the order is tagged <code>vantly-cancelled</code>.</li>
+</ul>
+<h2>Where customers find it</h2>
+<p>The portal lives at <code>yourstore.com/apps/cancel</code>. Link it from your order confirmation email, your FAQ, and your account page.</p>
+""",
+    },
+    {
+        "slug": "reasons-and-offers",
+        "title": "Reasons, questions and offers",
+        "summary": "Product groups, follow-up questions, and the offer each reason shows.",
+        "body": """
+<p>Reasons are what customers pick when they cancel. Each reason can ask follow-up questions and show one offer.</p>
+<h2>Product groups</h2>
+<p>Different products get cancelled for different reasons. A machine might be cancelled because the customer needs a prescription first, a mask because they're worried it won't fit. Product groups let each kind of product have its own list.</p>
+<ul>
+<li>Go to <strong>Reasons &amp; offers</strong> and click <strong>Add product group</strong>.</li>
+<li>Choose which products belong to it by collection, product, or product tag.</li>
+<li>Add the reasons for that group.</li>
+</ul>
+<p>Groups are checked from the top. If a product fits two groups, the higher one wins. <strong>Everything else</strong> is always last and covers every product not in a group. There's no limit on how many groups you can have.</p>
+<p>If an order has items from two groups, the customer answers once per group, not once per item.</p>
+<h2>Shared reasons</h2>
+<p>Reasons like "Found a better price" or "Wrong shipping address" apply to everything. Set them up once under <strong>Shared reasons</strong>. They show after each group's own reasons, and you can turn one off for a specific group.</p>
+<h2>Follow-up questions</h2>
+<p>Questions open under a reason when the customer picks it: choose one, short text, long text, or a product picker. The answers show on each cancellation and in Overview, so you can see the real cause, like "has never had a sleep study".</p>
+<h2>Offers</h2>
+<p>Each reason can show one offer:</p>
+<ul>
+<li><strong>Suggest products</strong>: add-ons that solve the problem. A product can show to everyone or only for certain answers.</li>
+<li><strong>Discount</strong>: a code or a partial refund.</li>
+<li><strong>Swap item</strong>: change the variant or product instead of cancelling.</li>
+<li><strong>Shipping upgrade</strong>: a faster method at no cost.</li>
+<li><strong>Fix address</strong>: edit the shipping address before it ships.</li>
+<li><strong>Message only</strong>: a short note and a link.</li>
+<li><strong>No offer</strong>: go straight to the cancel button.</li>
+</ul>
+<p>The customer can always cancel. Offers never hide the cancel button.</p>
+""",
+    },
+    {
+        "slug": "rules",
+        "title": "Cancellation rules",
+        "summary": "Decide which orders can be cancelled, and whether you approve them first.",
+        "body": """
+<p>Rules run when the customer looks up their order, before any reasons or offers. They decide what happens:</p>
+<ul>
+<li><strong>Auto-cancel</strong>: refunded and restocked right away.</li>
+<li><strong>Needs approval</strong>: the order stays paused until you approve or decline it.</li>
+<li><strong>Block</strong>: the customer sees your message instead, like "Your order is already being packed."</li>
+</ul>
+<h2>How rules are checked</h2>
+<p>From the top of the list; the first rule that matches decides. Drag the handle to change the order. The last rule, <strong>Everything else</strong>, covers every order the rules above didn't match. Orders that already shipped can never be cancelled in the portal.</p>
+<h2>Conditions</h2>
+<p>Every condition is picked from your store, not typed: order total, time since the order, time of day, customer tag, order tag, collection, product, product tag, payment method, and shipping country. Match all or any of them.</p>
+<h2>Common setups</h2>
+<ul>
+<li>Block cancels after your daily cutoff (for example after 2 p.m. for same-day shipping).</li>
+<li>Approve big orders yourself.</li>
+<li>Block wholesale customers or final sale items.</li>
+</ul>
+""",
+    },
+    {
+        "slug": "managing-cancellations",
+        "title": "Managing cancellations",
+        "summary": "The cancellations list, approvals, and what you see on each one.",
+        "body": """
+<p><strong>Cancellations</strong> lists every request, with tabs for <strong>Needs approval</strong>, <strong>Saved</strong>, <strong>Cancelled</strong> and <strong>Blocked</strong>.</p>
+<h2>Each cancellation</h2>
+<p>Click a row to see:</p>
+<ul>
+<li><strong>Items</strong>: which were cancelled, which were kept, and anything added from an offer.</li>
+<li><strong>What the customer told you</strong>: the reason and answers per product group, the offer they saw, and whether they took it.</li>
+<li><strong>Summary</strong>: refund, revenue saved, and which rule applied.</li>
+<li><strong>History</strong>: every step with times, from the hold to the refund.</li>
+</ul>
+<h2>Approvals</h2>
+<p>When a rule says <strong>Needs approval</strong>, the order stays paused. Click <strong>Approve cancel</strong> to refund and restock, or <strong>Decline</strong> to keep the order and resume shipping. The customer gets an email either way.</p>
+""",
+    },
+    {
+        "slug": "analytics",
+        "title": "Overview and analytics",
+        "summary": "Revenue saved, save rate, and why customers cancel.",
+        "body": """
+<p><strong>Overview</strong> shows how your cancel portal is doing:</p>
+<ul>
+<li><strong>Revenue saved</strong>: orders customers kept after seeing an offer.</li>
+<li><strong>Save rate</strong>: the share of cancel requests that ended in a kept order.</li>
+<li><strong>Why customers cancel</strong>: each reason, how often it was picked, and how often you saved it.</li>
+<li><strong>What the answers say</strong>: follow-up answers for a reason, so you can spot the real cause.</li>
+<li><strong>Offer performance</strong>: how often each offer was shown and accepted.</li>
+</ul>
+<p>Pick any date range, from Today to All time or your own dates, and compare with the previous period or the same period last year.</p>
+""",
+    },
+]
+
+CANCEL_FAQ = [
+    ("When is Vantly Cancellations available?", "It's in development and coming soon to the Shopify App Store. Email support@vantlyapps.com to hear when it launches."),
+    ("Can customers cancel only part of an order?", "Yes. Every item starts selected, and customers untick what they want to keep. The refund covers only what they cancel, and the rest ships as planned."),
+    ("Can a customer always cancel?", "Yes, as long as your rules allow it. Offers never hide the cancel button."),
+    ("Do customers have to give a reason?", "Yes, one reason per product group they're cancelling. Follow-up questions are optional unless you make them required."),
+    ("What stops my warehouse from shipping while the customer decides?", "The order goes on a fulfillment hold as soon as the customer starts. It's released if they keep the order."),
+    ("Can different products have different reasons?", "Yes. Product groups give machines, masks, or any other kind of product their own reasons, questions and offers. There's no limit on groups."),
+    ("What if the order has already shipped?", "The portal won't cancel it. You can point customers to your return portal instead."),
+    ("Does it work with Vantly Returns?", "Yes. Both share your portal branding, and they're built to be used together."),
+    ("Do customers need an account?", "No. They find their order with the order number and email."),
+]
+
 CSS = """
 :root { --bg:#FFFFFF; --soft:#FAFAFA; --line:#E5E5E7; --ink:#111113; --muted:#62626B; --teal:#0F6E56; --mint:#5DCAA5; color-scheme: light; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#0B0B0C; --soft:#141416; --line:#2A2A2E; --ink:#F4F4F5; --muted:#A1A1AA; --teal:#3CC39A; color-scheme: dark; } }
@@ -264,6 +396,8 @@ code { background:var(--soft); border:1px solid var(--line); border-radius:6px; 
 .table tr:last-child td { border-bottom:0; }
 details { border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin:8px 0; }
 summary { cursor:pointer; font-weight:600; }
+.soon { letter-spacing:0; font-family:"Inter",sans-serif; line-height:1.4; display:inline-block; margin-left:6px; padding:2px 8px; border-radius:99px; font-size:.72rem; font-weight:600; color:var(--teal) !important; background:color-mix(in srgb, var(--teal) 12%, transparent); vertical-align:2px; }
+.note { border:1px solid var(--line); background:var(--soft); border-radius:12px; padding:12px 16px; margin:0 0 26px; color:var(--muted); }
 details p { margin:10px 0 0; color:var(--muted); }
 .more { margin-top:44px; padding-top:22px; border-top:1px solid var(--line); color:var(--muted); }
 footer { border-top:1px solid var(--line); padding:28px 0 40px; color:var(--muted); font-size:14px; }
@@ -273,13 +407,13 @@ MARK = '<svg viewBox="12 9 40 48" aria-hidden="true"><g transform="translate(1.5
 CONTACT = "support@vantlyapps.com"
 
 
-def page(title: str, description: str, body: str, crumb: bool) -> str:
+def page(title: str, description: str, body: str, crumb: bool, app: str = "Returns", home: str = "/help") -> str:
     return f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{html.escape(title)} · Vantly Returns Help</title>
+<title>{html.escape(title)} · Vantly {app} Help</title>
 <meta name="description" content="{html.escape(description)}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -290,7 +424,7 @@ def page(title: str, description: str, body: str, crumb: bool) -> str:
 <body>
 <nav class="nav" aria-label="Main"><div class="wrap">
   <a class="brand" href="/" aria-label="Vantly home">{MARK} vantly</a>
-  {'<a class="crumb" href="/help">Help center</a>' if crumb else ''}
+  {f'<a class="crumb" href="{home}">Help center</a>' if crumb else ''}
 </div></nav>
 <main class="wrap">{body}</main>
 <footer><div class="wrap">© 2026 Vantly · <a href="/">vantlyapps.com</a> · <a href="/privacy">Privacy</a></div></footer>
@@ -310,6 +444,8 @@ def build():
 <h1>Help center</h1>
 <p class="lede">Everything you need to set up and run Vantly Returns.</p>
 <div class="grid">{cards}</div>
+<h2>Other Vantly apps</h2>
+<div class="grid"><a class="card" href="/help/cancellations/"><strong>Vantly Cancellations <span class="soon">Coming soon</span></strong><span>Self-serve cancels with save offers. See how it works.</span></a></div>
 <h2 id="faq">Frequently asked questions</h2>
 {faq}
 <p class="more">Can't find an answer? Email <a href="mailto:{CONTACT}">{CONTACT}</a>.</p>
@@ -326,7 +462,38 @@ def build():
 </article>
 """
         (out / f'{a["slug"]}.html').write_text(page(a["title"], a["summary"], body, True))
-    print(f"Built {len(ARTICLES)} articles + index")
+    # Cancellations help
+    cdir = out / "cancellations"; cdir.mkdir(exist_ok=True)
+    home = "/help/cancellations/"
+    note = '<p class="note"><strong>Coming soon.</strong> Vantly Cancellations is in development. These guides show how it will work.</p>'
+    ccards = "".join(
+        f'<a class="card" href="/help/cancellations/{a["slug"]}"><strong>{html.escape(a["title"])}</strong><span>{html.escape(a["summary"])}</span></a>'
+        for a in CANCEL_ARTICLES
+    )
+    cfaq = "".join(f"<details><summary>{html.escape(q)}</summary><p>{html.escape(a)}</p></details>" for q, a in CANCEL_FAQ)
+    cindex = f"""
+<h1>Vantly Cancellations <span class="soon">Coming soon</span></h1>
+<p class="lede">Let customers cancel unshipped orders on their own, and save the ones you can.</p>
+{note}
+<div class="grid">{ccards}</div>
+<h2 id="faq">Frequently asked questions</h2>
+{cfaq}
+<p class="more">Looking for Vantly Returns? <a href="/help">Returns help center</a> · Questions? <a href="mailto:{CONTACT}">{CONTACT}</a></p>
+"""
+    (cdir / "index.html").write_text(page("Help center", "Guides and answers for Vantly Cancellations.", cindex, True, "Cancellations", "/help"))
+    for i, a in enumerate(CANCEL_ARTICLES):
+        nxt = CANCEL_ARTICLES[(i + 1) % len(CANCEL_ARTICLES)]
+        body = f"""
+<article class="article">
+{note}
+<h1>{html.escape(a["title"])}</h1>
+<p class="lede">{html.escape(a["summary"])}</p>
+{a["body"]}
+<p class="more">Next: <a href="/help/cancellations/{nxt["slug"]}">{html.escape(nxt["title"])}</a> · <a href="{home}">All Cancellations guides</a> · Questions? <a href="mailto:{CONTACT}">{CONTACT}</a></p>
+</article>
+"""
+        (cdir / f'{a["slug"]}.html').write_text(page(a["title"], a["summary"], body, True, "Cancellations", home))
+    print(f"Built {len(ARTICLES)} articles + index, {len(CANCEL_ARTICLES)} Cancellations articles + index")
 
 
 if __name__ == "__main__":
