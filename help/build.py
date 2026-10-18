@@ -64,7 +64,7 @@ ARTICLES = [
         "title": "Return rules",
         "summary": "Give products their own window, options, fees, and return reasons.",
         "body": """
-<p>Your <strong>default settings</strong> cover every product. <strong>Rules</strong> change the terms for the products they match, like a longer window for machines or final sale for clearance items.</p>
+<p>Your <strong>default settings</strong> cover every product. <strong>Rules</strong> change the terms for the products they match, like a longer window for snowboards or final sale for clearance items.</p>
 <h2>How rules are checked</h2>
 <p>Rules are checked from the top of the list, and each item follows the <strong>first rule that matches it</strong>. Anything no rule matches uses your default settings, which are always the last row. Use the arrows to change the order, and put narrow rules (like final sale) above broad ones.</p>
 <h2>Create a rule</h2>
@@ -75,7 +75,7 @@ ARTICLES = [
 <li><strong>Return options</strong>: which of refund, store credit, exchange, and replacement customers can choose.</li>
 <li><strong>Fees and bonus</strong>: restocking fee, return shipping fee, and bonus credit. Leave a field blank to use your default.</li>
 <li><strong>When opened</strong>: different terms for opened items, like store credit or exchange only. The portal then asks customers whether each item was opened.</li>
-<li><strong>Return reasons</strong>: a reason list just for these products (for example, masks: Air leaks, Uncomfortable, Doesn't fit). End a reason with <code>*</code> to require a photo.</li>
+<li><strong>Return reasons</strong>: a reason list just for these products (for example, boots: Too tight, Too loose, Wrong flex). End a reason with <code>*</code> to require a photo.</li>
 <li><strong>Extras</strong>: require a photo, approve automatically, let the customer keep the item (always, or only the first time), show a message, waive fees, ask the customer to agree to a statement, or send items to another return address.</li>
 <li><strong>Review and order</strong>: flag returns for review, use the rule only once per customer, or let rules below also apply.</li>
 </ul>
@@ -268,7 +268,7 @@ CANCEL_ARTICLES = [
         "body": """
 <p>Reasons are what customers pick when they cancel. Each reason can ask follow-up questions and show one offer.</p>
 <h2>Product groups</h2>
-<p>Different products get cancelled for different reasons. A machine might be cancelled because the customer needs a prescription first, a mask because they're worried it won't fit. Product groups let each kind of product have its own list.</p>
+<p>Different products get cancelled for different reasons. A snowboard might be cancelled because the customer doesn't have bindings yet, boots because they're worried about the fit. Product groups let each kind of product have its own list.</p>
 <ul>
 <li>Go to <strong>Reasons &amp; offers</strong> and click <strong>Add product group</strong>.</li>
 <li>Choose which products belong to it by collection, product, or product tag.</li>
@@ -279,7 +279,7 @@ CANCEL_ARTICLES = [
 <h2>Shared reasons</h2>
 <p>Reasons like "Found a better price" or "Wrong shipping address" apply to everything. Set them up once under <strong>Shared reasons</strong>. They show after each group's own reasons, and you can turn one off for a specific group.</p>
 <h2>Follow-up questions</h2>
-<p>Questions open under a reason when the customer picks it: choose one, short text, long text, or a product picker. The answers show on each cancellation and in Overview, so you can see the real cause, like "has never had a sleep study".</p>
+<p>Questions open under a reason when the customer picks it: choose one, short text, long text, or a product picker. The answers show on each cancellation and in Overview, so you can see the real cause, like "is missing bindings".</p>
 <h2>Offers</h2>
 <p>Each reason can show one offer:</p>
 <ul>
@@ -359,7 +359,7 @@ CANCEL_FAQ = [
     ("Can a customer always cancel?", "Yes, as long as your rules allow it. Offers never hide the cancel button."),
     ("Do customers have to give a reason?", "Yes, one reason per product group they're cancelling. Follow-up questions are optional unless you make them required."),
     ("What stops my warehouse from shipping while the customer decides?", "The order goes on a fulfillment hold as soon as the customer starts. It's released if they keep the order."),
-    ("Can different products have different reasons?", "Yes. Product groups give machines, masks, or any other kind of product their own reasons, questions and offers. There's no limit on groups."),
+    ("Can different products have different reasons?", "Yes. Product groups give snowboards, boots, or any other kind of product their own reasons, questions and offers. There's no limit on groups."),
     ("What if the order has already shipped?", "The portal won't cancel it. You can point customers to your return portal instead."),
     ("Does it work with Vantly Returns?", "Yes. Both share your portal branding, and they're built to be used together."),
     ("Do customers need an account?", "No. They find their order with the order number and email."),
