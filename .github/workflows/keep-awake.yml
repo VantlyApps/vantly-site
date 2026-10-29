@@ -1,0 +1,16 @@
+# Backup for cron-job.org: keeps the Vantly Returns server on Render's free plan
+# awake so merchants never see Render's "waking up" page. Lives in this public
+# repo because public repos get free Actions minutes. GitHub may delay scheduled
+# runs a few minutes; cron-job.org (every 10 min) is still the main pinger.
+name: Keep app awake
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Ping Vantly Returns
+        run: curl -fsS --retry 3 --retry-delay 20 --max-time 90 -o /dev/null -w "%{http_code} in %{time_total}s\n" https://app.vantlyapps.com/health
