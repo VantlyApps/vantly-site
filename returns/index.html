@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Vantly Returns · Returns app for Shopify">
+<meta property="og:description" content="Vantly Returns is a returns app for Shopify. It turns refunds into exchanges and store credit, buys the return label, restocks the right SKU, and adds package protection you keep 100% of.">
+<title>Vantly Returns · Returns app for Shopify</title>
+<meta name="description" content="Vantly Returns is a returns app for Shopify. It turns refunds into exchanges and store credit, buys the return label, restocks the right SKU, and adds package protection you keep 100% of.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Vantly home">
+      <svg viewBox="12 9 40 48" aria-hidden="true"><g transform="translate(1.5 6)"><path d="M16 20 L30 46 L41 25 C45 17 42 11 35 11 L31 11" fill="none" stroke="var(--teal)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 11 L32 6 L32 16 Z" fill="var(--mint)" stroke="var(--mint)" stroke-width="2" stroke-linejoin="round"/></g></svg>
+      vantly
+    </a>
+    <div class="nav-links">
+      <a href="/returns/" aria-current="page">Returns</a>
+      <a href="/cancellations/">Cancellations</a>
+      <a href="/help">Help</a>
+    </div>
+    <a class="btn btn-primary btn-sm" href="https://apps.shopify.com/vantly-returns">Install Returns</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Vantly Returns &#183; for Shopify</span>
+      <h1>
+        <span class="word" style="animation-delay:.05s">Returns</span>
+        <span class="word" style="animation-delay:.15s">that</span>
+        <span class="word" style="animation-delay:.25s">bring</span>
+        <span class="word accent" style="animation-delay:.35s">customers<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C 80 4, 180 4, 296 12"/></svg></span>
+        <span class="word" style="animation-delay:.45s">back.</span>
+      </h1>
+      <p class="lede">Vantly turns refunds into exchanges and store credit, buys the cheapest label, restocks the right SKU, and emails your customer at every step. Your rules, your brand, on your Shopify store.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://apps.shopify.com/vantly-returns">Install on Shopify</a>
+        <a class="btn btn-ghost" href="#returns">See how it works</a>
+      </div>
+      <p class="hero-note"><span class="dot" aria-hidden="true"></span> Live on the Shopify App Store. Free plan included, every feature on every plan.</p>
+    </div>
+
+    <div class="demo" aria-label="Example return moving through Vantly">
+      <div class="card demo-card">
+        <div class="demo-head">
+          <div class="avatar" aria-hidden="true">AR</div>
+          <div class="meta"><strong>Return #1042-R1</strong><span>Alex Rivera &#183; Order #1042</span></div>
+          <span class="pill" id="status">Requested</span>
+        </div>
+        <div class="stepper" id="stepper">
+          <div class="step"><div class="bar"><i></i></div>Requested</div>
+          <div class="step"><div class="bar"><i></i></div>Approved</div>
+          <div class="step"><div class="bar"><i></i></div>Received</div>
+          <div class="step"><div class="bar"><i></i></div>Completed</div>
+        </div>
+        <div class="item">
+          <div class="thumb" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></svg></div>
+          <div class="info"><strong>Trail Runner &#183; Size 9</strong><span>Too small &#183; exchange for Size 10</span></div>
+          <span class="price">$129.00</span>
+        </div>
+        <div class="events" id="events" aria-live="polite"></div>
+      </div>
+      <div class="card float" aria-hidden="true">
+        <svg viewBox="12 9 40 48" width="22" height="26"><g transform="translate(1.5 6)"><path d="M16 20 L30 46 L41 25 C45 17 42 11 35 11 L31 11" fill="none" stroke="var(--teal)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 11 L32 6 L32 16 Z" fill="var(--mint)"/></g></svg>
+        <div><div class="big">$129 kept</div><span style="color:var(--muted)">as an exchange, not a refund</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="strip">
+  <div class="wrap">
+    <span class="label">Works with</span>
+    <span class="chip"><i></i>Shopify</span>
+    <span class="chip"><i></i>ShipStation</span>
+    <span class="chip"><i></i>EasyPost</span>
+    <span class="chip"><i></i>USPS &#183; UPS &#183; FedEx &#183; DHL</span>
+    <span class="chip"><i></i>Katana</span>
+  </div>
+</div>
+
+<section id="returns">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Returns</span>
+      <h2>Every return, handled the way your store would.</h2>
+      <p class="lede">Set it up once. Vantly follows your policy on every return, and your team only steps in when it matters.</p>
+    </div>
+    <div class="bento">
+      <article class="card tile wide reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h6"/></svg></div>
+        <h3>Rules that read like your policy</h3>
+        <p>Tags, collections, SKUs, order discounts, customer history, item condition. Test any rule against a real order before it goes live.</p>
+        <div class="rule"><span class="k">if</span> product tag is <span class="v">snowboard</span> <span class="k">and</span> condition is <span class="v">opened</span> <span class="k">then</span> <span class="r">15% restocking fee</span></div>
+      </article>
+      <article class="card tile wide reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M3 11V9a2 2 0 012-2h16"/><path d="M7 21l-4-4 4-4"/><path d="M21 13v2a2 2 0 01-2 2H3"/></svg></div>
+        <h3>Exchanges before refunds</h3>
+        <p>Instant exchanges, bonus store credit, and the customer's original discount carried over. If the new item costs more, they get an invoice for the difference.</p>
+        <div class="swap"><span class="sku">Size 9</span><span class="arrow">&#8594;</span><span class="sku">Size 10</span><span style="color:var(--muted)">+ LABOR discount kept</span></div>
+      </article>
+      <article class="card tile reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h11v10H3z"/><path d="M14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></div>
+        <h3>Labels at your rates</h3>
+        <p>USPS, UPS, FedEx, DHL and more, through your ShipStation or EasyPost account. Vantly compares them and buys the cheapest or fastest label automatically.</p>
+      </article>
+      <article class="card tile reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z"/></svg></div>
+        <h3>Green returns</h3>
+        <p>When shipping it back costs more than it's worth, the customer keeps it. They get a friendly email, not a label.</p>
+      </article>
+      <article class="card tile reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16v13H4z"/><path d="M4 7l2-4h12l2 4"/><path d="M9 12h6"/></svg></div>
+        <h3>Restock the right SKU</h3>
+        <p>Opened items can go back as a different product, like new to open-box, in Shopify or Katana.</p>
+        <div class="swap"><span class="sku">MACH-NEW</span><span class="arrow">&#8594;</span><span class="sku">MACH-OPEN</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="protection" style="background: var(--soft); border-block: 1px solid var(--line);">
+  <div class="wrap protect">
+    <div class="reveal" style="display:grid; gap:18px;">
+      <span class="eyebrow">Package protection</span>
+      <h2>Protection your customers add. Revenue you keep.</h2>
+      <p class="lede">A clean switch in the cart covers lost, stolen, and damaged packages, plus free returns. Priced as a share of the cart, rounded to the prices you choose.</p>
+      <ul>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><span><b>You keep 100% of the fee.</b> No revenue share, no hidden cut.</span></li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><span><b>Looks right on any theme.</b> A toggle card or a Checkout+ button, in your colors.</span></li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><span><b>Your words.</b> Every line of text and the info popup are yours to write.</span></li>
+      </ul>
+    </div>
+    <div class="card cart reveal" aria-label="Example cart with package protection">
+      <div class="cart-row"><span>Trail Runner &#183; Size 10</span><span>$129.00</span></div>
+      <div class="cart-row"><span>Merino socks &#215; 2</span><span>$36.00</span></div>
+      <button class="widget" id="widget" role="switch" aria-checked="true" type="button">
+        <svg class="shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+        <span class="txt"><b>Free returns &amp; package protection</b><span>From damage, loss &amp; theft for $4.48</span></span>
+        <span class="switch" aria-hidden="true"></span>
+      </button>
+      <div class="cart-row"><span>Protection</span><span class="pp" id="pp">$4.48</span></div>
+      <div class="cart-row total"><span>Total</span><span id="total">$169.48</span></div>
+      <span class="btn btn-primary checkout" role="presentation">Check out</span>
+      <p class="kept">Your store keeps <b id="kept">$4.48</b> on this order.</p>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="card price-card reveal">
+      <div style="display:grid; gap:16px; position:relative; z-index:1">
+        <span class="eyebrow" style="color:#5DCAA5">Pricing</span>
+        <h2>Every feature on every plan.</h2>
+        <p class="lede">Plans differ only by returns per month. No per-return fees, no features locked behind a sales call, no paying extra for seats.</p>
+      </div>
+      <ul class="promises">
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span>Rules, exchanges, and analytics on every plan</li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span>Unlimited team members</li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span>You keep all package protection revenue</li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span>Billed through your Shopify invoice</li>
+      </ul>
+      <div class="plans"><div class="plan"><span class="name">Free</span><span class="amt">$0<small></small></span><span class="yr">Free forever</span><span class="lim">20 returns a month</span></div><div class="plan"><span class="name">Starter</span><span class="amt">$29<small> /month</small></span><span class="yr">or $290/year</span><span class="lim">150 returns a month</span></div><div class="plan"><span class="name">Growth</span><span class="amt">$79<small> /month</small></span><span class="yr">or $790/year</span><span class="lim">500 returns a month</span></div><div class="plan"><span class="name">Pro</span><span class="amt">$199<small> /month</small></span><span class="yr">or $1,990/year</span><span class="lim">Unlimited returns</span></div></div>
+      <p class="price-note">Paid plans start with a 14-day free trial. Go over your plan&#8217;s returns and nothing stops; you&#8217;ll see a notice with the plan that fits. <a href="/help/plans-and-billing" style="color:#5DCAA5">Plans and billing</a></p>
+    </div>
+  </div>
+</section>
+
+<section id="also" style="padding-top:0">
+  <div class="wrap">
+    <div class="card also reveal">
+      <div class="txt">
+        <span class="eyebrow">Also from Vantly &#183; coming soon</span>
+        <h3 style="font-size:1.5rem">Vantly Cancellations</h3>
+        <p>Save orders before they&#8217;re cancelled, with an offer made for each reason.</p>
+      </div>
+      <a class="btn btn-ghost" href="/cancellations/">See how it works</a>
+    </div>
+  </div>
+</section>
+
+<section id="launch" style="padding-top:0">
+  <div class="wrap reveal" style="display:grid; gap:18px; justify-items:center; text-align:center">
+    <span class="eyebrow">Now on the Shopify App Store</span>
+    <h2>Returns that keep the sale.</h2>
+    <p class="lede">Install Vantly Returns for free and set it up in about 15 minutes.</p>
+    <div class="hero-cta" style="justify-content:center">
+      <a class="btn btn-primary" href="https://apps.shopify.com/vantly-returns">Install on Shopify</a>
+      <a class="btn btn-ghost" href="/help/getting-started">Read the setup guide</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="/" style="font-size:18px" aria-label="Vantly home">
+      <svg viewBox="12 9 40 48" aria-hidden="true" style="width:24px;height:24px"><g transform="translate(1.5 6)"><path d="M16 20 L30 46 L41 25 C45 17 42 11 35 11 L31 11" fill="none" stroke="var(--teal)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 11 L32 6 L32 16 Z" fill="var(--mint)" stroke="var(--mint)" stroke-width="2" stroke-linejoin="round"/></g></svg>
+      vantly
+    </a>
+    <nav class="links" aria-label="Footer">
+      <a href="/returns/">Returns</a>
+      <a href="/cancellations/">Cancellations</a>
+      <a href="/help">Help</a>
+      <a href="mailto:support@vantlyapps.com">support@vantlyapps.com</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/security">Security</a>
+      <a href="/dpa">DPA</a>
+    </nav>
+    <span>&#169; 2026 Vantly &#183; Apps for Shopify</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Hero demo: one return moving through Vantly, on a loop.
+  var steps = document.querySelectorAll("#stepper .step");
+  var status = document.getElementById("status");
+  var events = document.getElementById("events");
+  var check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>';
+  var script = [
+    { step: 0, pill: "Requested", text: "<b>Return requested</b> in your portal" },
+    { step: 1, pill: "Approved", text: "<b>Approved</b> by your rules", amt: "auto" },
+    { step: 1, pill: "Approved", text: "<b>Label bought</b> &#183; USPS Ground Advantage", amt: "$6.50" },
+    { step: 2, pill: "Received", text: "<b>Restocked</b> &#183; Size 9 back in stock", amt: "+1" },
+    { step: 3, pill: "Completed", text: "<b>Exchange sent</b> &#183; Size 10 on its way", amt: "$0 refunded" }
+  ];
+  var i = 0;
+  function show() {
+    var s = script[i];
+    steps.forEach(function (el, n) { el.classList.toggle("on", n <= s.step); });
+    status.textContent = s.pill;
+    status.classList.toggle("done", s.step === 3);
+    if (i === 0) events.innerHTML = "";
+    var row = document.createElement("div");
+    row.className = "event";
+    row.innerHTML = '<span class="ic">' + check + "</span><span>" + s.text + "</span>" + (s.amt ? '<span class="amt">' + s.amt + "</span>" : "");
+    events.appendChild(row);
+    while (events.children.length > 3) events.removeChild(events.firstChild);
+    i = (i + 1) % script.length;
+  }
+  if (reduced) { i = 1; show(); i = 2; show(); i = 4; show(); }
+  else { show(); setInterval(show, 1900); }
+
+  // Protection cart: the switch really changes the total.
+  var widget = document.getElementById("widget");
+  var base = 16500, fee = 448;
+  var fmt = function (c) { return "$" + (c / 100).toFixed(2); };
+  function paint(on) {
+    widget.setAttribute("aria-checked", String(on));
+    document.getElementById("pp").textContent = on ? fmt(fee) : "&#8212;";
+    document.getElementById("total").textContent = fmt(base + (on ? fee : 0));
+    document.getElementById("kept").textContent = on ? fmt(fee) : "$0.00";
+  }
+  widget.addEventListener("click", function () { paint(widget.getAttribute("aria-checked") !== "true"); });
+
+})();
+</script>
+</body>
+</html>

@@ -22,6 +22,10 @@ a { color:var(--teal); }
 .brand { display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink); font:700 22px "Inter Tight","Inter",sans-serif; letter-spacing:-0.03em; }
 .brand svg { width:28px; height:28px; }
 .nav .crumb { color:var(--muted); text-decoration:none; font-weight:600; }
+.nav .links { margin-left:auto; display:flex; gap:18px; font-size:14px; }
+.nav .links a { color:var(--muted); text-decoration:none; }
+.nav .links a:hover { color:var(--ink); }
+@media (max-width:560px) { .nav .wrap { gap:12px; } .nav .crumb { display:none; } .nav .links { gap:12px; font-size:13px; } }
 main { padding:44px 0 72px; }
 h1 { font:700 clamp(2rem,5vw,2.8rem)/1.08 "Inter Tight","Inter",sans-serif; letter-spacing:-0.03em; margin:0 0 10px; }
 h2 { font:700 1.2rem/1.3 "Inter Tight","Inter",sans-serif; letter-spacing:-0.015em; margin:34px 0 8px; }
@@ -51,6 +55,7 @@ footer { border-top:1px solid var(--line); padding:28px 0 40px; color:var(--mute
 <nav class="nav" aria-label="Main"><div class="wrap">
   <a class="brand" href="/" aria-label="Vantly home"><svg viewBox="12 9 40 48" aria-hidden="true"><g transform="translate(1.5 6)"><path d="M16 20 L30 46 L41 25 C45 17 42 11 35 11 L31 11" fill="none" stroke="#0F6E56" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 11 L32 6 L32 16 Z" fill="#5DCAA5" stroke="#5DCAA5" stroke-width="2" stroke-linejoin="round"/></g></svg> vantly</a>
   <a class="crumb" href="/help/cancellations/">Help center</a>
+  <div class="links"><a href="/returns/">Returns</a><a href="/cancellations/">Cancellations</a><a href="/help">Help</a></div>
 </div></nav>
 <main class="wrap">
 <article class="article">
@@ -73,6 +78,6 @@ footer { border-top:1px solid var(--line); padding:28px 0 40px; color:var(--mute
 <p class="more">Next: <a href="/help/cancellations/analytics">Overview and analytics</a> · <a href="/help/cancellations/">All Cancellations guides</a> · Questions? <a href="mailto:support@vantlyapps.com">support@vantlyapps.com</a></p>
 </article>
 </main>
-<footer><div class="wrap">© 2026 Vantly · <a href="/">vantlyapps.com</a> · <a href="/privacy">Privacy</a></div></footer>
+<footer><div class="wrap">© 2026 Vantly · <a href="/">vantlyapps.com</a> · <a href="/returns/">Returns</a> · <a href="/cancellations/">Cancellations</a> · <a href="/privacy">Privacy</a></div></footer>
 </body>
 </html>

@@ -379,6 +379,10 @@ a { color:var(--teal); }
 .brand { display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink); font:700 22px "Inter Tight","Inter",sans-serif; letter-spacing:-0.03em; }
 .brand svg { width:28px; height:28px; }
 .nav .crumb { color:var(--muted); text-decoration:none; font-weight:600; }
+.nav .links { margin-left:auto; display:flex; gap:18px; font-size:14px; }
+.nav .links a { color:var(--muted); text-decoration:none; }
+.nav .links a:hover { color:var(--ink); }
+@media (max-width:560px) { .nav .wrap { gap:12px; } .nav .crumb { display:none; } .nav .links { gap:12px; font-size:13px; } }
 main { padding:44px 0 72px; }
 h1 { font:700 clamp(2rem,5vw,2.8rem)/1.08 "Inter Tight","Inter",sans-serif; letter-spacing:-0.03em; margin:0 0 10px; }
 h2 { font:700 1.2rem/1.3 "Inter Tight","Inter",sans-serif; letter-spacing:-0.015em; margin:34px 0 8px; }
@@ -426,9 +430,10 @@ def page(title: str, description: str, body: str, crumb: bool, app: str = "Retur
 <nav class="nav" aria-label="Main"><div class="wrap">
   <a class="brand" href="/" aria-label="Vantly home">{MARK} vantly</a>
   {f'<a class="crumb" href="{home}">Help center</a>' if crumb else ''}
+  <div class="links"><a href="/returns/">Returns</a><a href="/cancellations/">Cancellations</a><a href="/help">Help</a></div>
 </div></nav>
 <main class="wrap">{body}</main>
-<footer><div class="wrap">© 2026 Vantly · <a href="/">vantlyapps.com</a> · <a href="/privacy">Privacy</a></div></footer>
+<footer><div class="wrap">© 2026 Vantly · <a href="/">vantlyapps.com</a> · <a href="/returns/">Returns</a> · <a href="/cancellations/">Cancellations</a> · <a href="/privacy">Privacy</a></div></footer>
 </body>
 </html>
 """
@@ -443,15 +448,16 @@ def build():
     faq = "".join(f"<details><summary>{html.escape(q)}</summary><p>{html.escape(a)}</p></details>" for q, a in FAQ)
     index = f"""
 <h1>Help center</h1>
-<p class="lede">Everything you need to set up and run Vantly Returns.</p>
+<p class="lede">Guides and answers for every Vantly app.</p>
+<h2>Vantly Returns</h2>
 <div class="grid">{cards}</div>
-<h2>Other Vantly apps</h2>
-<div class="grid"><a class="card" href="/help/cancellations/"><strong>Vantly Cancellations <span class="soon">Coming soon</span></strong><span>Self-serve cancels with save offers. See how it works.</span></a></div>
-<h2 id="faq">Frequently asked questions</h2>
+<h2>Vantly Cancellations <span class="soon">Coming soon</span></h2>
+<div class="grid"><a class="card" href="/help/cancellations/"><strong>Cancellations guides</strong><span>Self-serve cancels with save offers. See how it will work.</span></a></div>
+<h2 id="faq">Vantly Returns: frequently asked questions</h2>
 {faq}
 <p class="more">Can't find an answer? Email <a href="mailto:{CONTACT}">{CONTACT}</a>.</p>
 """
-    (out / "index.html").write_text(page("Help center", "Guides and answers for Vantly Returns.", index, False))
+    (out / "index.html").write_text(page("Help center", "Guides and answers for Vantly Returns and Vantly Cancellations.", index, False, "app").replace("· Vantly app Help", "· Vantly Help"))
     for i, a in enumerate(ARTICLES):
         nxt = ARTICLES[(i + 1) % len(ARTICLES)]
         body = f"""
@@ -479,7 +485,7 @@ def build():
 <div class="grid">{ccards}</div>
 <h2 id="faq">Frequently asked questions</h2>
 {cfaq}
-<p class="more">Looking for Vantly Returns? <a href="/help">Returns help center</a> · Questions? <a href="mailto:{CONTACT}">{CONTACT}</a></p>
+<p class="more">Looking for Vantly Returns? <a href="/help">Help center</a> · Questions? <a href="mailto:{CONTACT}">{CONTACT}</a></p>
 """
     (cdir / "index.html").write_text(page("Help center", "Guides and answers for Vantly Cancellations.", cindex, True, "Cancellations", "/help"))
     for i, a in enumerate(CANCEL_ARTICLES):
