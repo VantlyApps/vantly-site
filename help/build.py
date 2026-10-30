@@ -420,8 +420,133 @@ CANCEL_FAQ = [
     ("Can different products have different reasons?", "Yes. Product groups give snowboards, boots, or any other kind of product their own reasons, questions and offers. There's no limit on groups."),
     ("What if the order has already shipped?", "The portal won't cancel it. You can point customers to your return portal instead."),
     ("Does it work with Vantly Returns?", "Yes. Both share your portal branding, and they're built to be used together."),
+    ("Can I make the cancel portal match my store?", "Yes. On the Cancel portal page, the Look tab sets your logo (and its position), colors, and font, and a Side by side or Classic layout, the same as Vantly Returns. The Text tab lets you change every piece of wording, grouped by step."),
     ("Do customers need an account?", "No. They find their order with the order number and email."),
     ("Does Vantly send emails to my customers?", "No. Shopify's own notifications (order cancelled, refund, payment link) go out from your Shopify settings."),
+]
+
+# ---------------- Vantly Discounts (coming soon) ----------------
+# Served at vantlyapps.com/help/discounts/<slug> (slugs match app/lib/help.ts in vantly-discounts)
+DISCOUNT_ARTICLES = [
+    {
+        "slug": "how-it-works",
+        "title": "How Vantly Discounts works",
+        "summary": "Discounts, cart groups and proposals, and how checkout picks the offer.",
+        "body": """
+<p>Vantly Discounts lets one Shopify discount hold many offers. Instead of making a separate discount for "30% off boards" and "25% off bindings with a board", you make one discount with two <strong>proposals</strong>, built from reusable <strong>cart groups</strong>.</p>
+<h2>The three parts</h2>
+<ul>
+<li><strong>Discount</strong>: how customers get it (a code or automatic), when it runs, who can use it, and what it combines with.</li>
+<li><strong><a href="/help/discounts/cart-groups">Cart groups</a></strong>: named sets of products, like "Boards" or "Bindings". <strong>All</strong> is built in and holds every item.</li>
+<li><strong><a href="/help/discounts/proposals">Proposals</a></strong>: "when the cart has this, discount those lines by this much". A proposal can take money off items, the order subtotal, or shipping.</li>
+</ul>
+<h2>How checkout picks the offer</h2>
+<p>Product proposals are checked from the top of the list; each item gets at most one, so the first proposal an item fits wins. For order and shipping proposals, the first one that qualifies wins. Drag ⋮⋮ to change the order.</p>
+<p>The discount is worked out inside Shopify's checkout, so it's fast and keeps working even if Vantly is briefly unavailable.</p>
+<h2>Make your first discount</h2>
+<ol>
+<li>Click <strong>Create discount</strong>. Pick a code or make it automatic, and set when it runs.</li>
+<li>Add cart groups for the products you want to discount.</li>
+<li>Add proposals that say what each group gets: an amount, a percentage, or a fixed price.</li>
+<li>Turn on <strong>Test mode</strong>, add products to your cart as a customer tagged <code>test</code>, and check the price.</li>
+</ol>
+<p>The discount also shows in Shopify's own discount list, and opening it there brings you back to Vantly's editor.</p>
+""",
+    },
+    {
+        "slug": "cart-groups",
+        "title": "Cart groups",
+        "summary": "Group products by collection, tag, metafield or price, and reuse them.",
+        "body": """
+<p>A cart group is a named set of products that proposals check and discount, like "Boards" or "Bindings". Only you see the name.</p>
+<h2>What can put an item in a group</h2>
+<ul>
+<li><strong>Product</strong>, <strong>Collection</strong>, or <strong>Product tag</strong> (is or is not).</li>
+<li><strong>Product or variant metafield</strong> equals or doesn't equal a value.</li>
+<li><strong>Line attribute</strong> equals or doesn't equal a value.</li>
+<li><strong>Line quantity</strong> or <strong>Item price</strong> is at least an amount.</li>
+<li><strong>Purchase type</strong>: one-time or subscription.</li>
+<li><strong>Compare-at price</strong>: set (already on sale) or none (not already on sale).</li>
+</ul>
+<h2>Order matters</h2>
+<p>Groups are checked from the top. An item joins only the first group it fits, unless you turn on <strong>An item can join every group it fits</strong>. <strong>All</strong> always holds every item in the cart.</p>
+<h2>Limits</h2>
+<p>One discount can use up to 10 different collections and 10 different product tags across its groups. Groups that use a metafield or line attribute need its key under <strong>Advanced</strong> on the discount; Shopify allows one of each per discount.</p>
+""",
+    },
+    {
+        "slug": "proposals",
+        "title": "Proposals",
+        "summary": "When the cart has…, discount these lines…, by: amount, percentage or fixed price.",
+        "body": """
+<p>A proposal is one offer inside a discount. It has two parts.</p>
+<h2>1. When the cart has</h2>
+<p>The conditions the cart must meet. Pick a <strong>measure</strong> (quantity, total, unique products, unique variants, or unique groups), <strong>at least</strong> or <strong>at most</strong>, a number, and the group to count in. Add more conditions with <strong>Add another group</strong>. With no conditions, it applies to every cart.</p>
+<h2>2. Discount these lines</h2>
+<p>Pick the group to discount (or every item in the cart), and <strong>How many items</strong>: leave it empty for all of them, or enter a number to discount only the cheapest ones.</p>
+<h2>By how much</h2>
+<ul>
+<li><strong>Amount</strong>: money off each item, for example $50 off.</li>
+<li><strong>Percentage</strong>: percent off each item, for example 25% off.</li>
+<li><strong>Fixed price</strong>: the item sells for a set price, for example $149.</li>
+</ul>
+<p>Turn on <strong>Apply to compare-at price</strong> to take the discount off the higher compare-at price instead of today's price (never more than today's price).</p>
+<h2>Use up the matched items</h2>
+<p>With <strong>Use up the matched items</strong> on, items counted toward this proposal can't count toward later ones, and with a number in How many items, the offer repeats for every full set in the cart (for example, buy 2 boards and get 1 binding free, for each set).</p>
+<h2>Message in the cart</h2>
+<p>Text shown next to the discounted items at checkout. Leave it empty for the default. For codes, Shopify shows the code instead.</p>
+""",
+    },
+    {
+        "slug": "codes-and-limits",
+        "title": "Codes, limits and combining",
+        "summary": "Codes vs automatic, usage limits, schedules, and stacking with other discounts.",
+        "body": """
+<h2>How customers get it</h2>
+<p>Choose <strong>Discount code</strong> (customers enter it; codes aren't case-sensitive and have no spaces) or <strong>Automatic</strong> (applies by itself at checkout).</p>
+<h2>Who, how often, and with what</h2>
+<ul>
+<li><strong>Limit total uses</strong> and <strong>One use per customer</strong>.</li>
+<li><strong>Combines with</strong>: product, order, and shipping discounts.</li>
+<li><strong>Subscriptions</strong>: all recurring payments, or the first payment only.</li>
+</ul>
+<h2>Conditions</h2>
+<p>Limit the whole discount to certain customer tags, countries, or currencies (none ticked means all), require a cart attribute, and choose whether B2B customers get it. <strong>Test mode</strong> gives it only to customers tagged <code>test</code>.</p>
+<h2>Schedule</h2>
+<p>Set when it starts and, optionally, when it ends. Times are in your store's time zone. The list shows each discount as Active, Scheduled, Expired, Draft, or Needs attention.</p>
+""",
+    },
+    {
+        "slug": "troubleshooting",
+        "title": "A discount isn't applying",
+        "summary": 'Test mode, conditions, priority, and what "Needs attention" means.',
+        "body": """
+<p>Work through these in order.</p>
+<h2>1. Is it live?</h2>
+<p>A <strong>Draft</strong> isn't in checkout yet; the discount page lists what's missing (for example, it needs at least one proposal). <strong>Scheduled</strong> hasn't started; <strong>Expired</strong> has ended.</p>
+<h2>2. Is Test mode on?</h2>
+<p>With Test mode on, only customers tagged <code>test</code> get the discount.</p>
+<h2>3. Do the conditions fit?</h2>
+<p>Check customer tags, countries, currencies, B2B, and any required cart attribute. Then check the proposal's "When the cart has" conditions against the cart.</p>
+<h2>4. Is another proposal winning?</h2>
+<p>Each item gets at most one product proposal: the first one it fits. Move the one you expect higher, or check whether the item is in the group you think (it joins only the first group it fits unless that's turned off).</p>
+<h2>5. Does it combine?</h2>
+<p>If the cart already has another discount, check <strong>Combines with</strong> on both.</p>
+<h2>What "Needs attention" means</h2>
+<p>Vantly couldn't update the discount in Shopify, for example because a group was deleted, a metafield key is missing, or it uses more than 10 collections or tags. Shopify keeps using the last version that worked until you fix it. The discount page says what's wrong.</p>
+""",
+    },
+]
+
+DISCOUNT_FAQ = [
+    ("When is Vantly Discounts available?", "It's in development and coming soon to the Shopify App Store. Email support@vantlyapps.com to hear when it launches."),
+    ("Can one discount have several offers?", "Yes. That's the point: one discount holds many proposals, checked from the top, for products, the order, and shipping."),
+    ("Can an item get two proposals?", "No. Each item gets at most one product proposal: the first one it fits."),
+    ("Can I discount only the cheapest items?", "Yes. In the proposal, set How many items to a number and the cheapest ones are discounted."),
+    ("Does it work with codes and automatic discounts?", "Yes, either one. You can switch later."),
+    ("Can I test a discount before customers see it?", "Yes. Turn on Test mode and only customers tagged test get it."),
+    ("Does it stack with my other discounts?", "Only if you allow it under Combines with, on this discount and the other one."),
+    ("Does it work with subscriptions?", "Yes. Choose all recurring payments or the first payment only."),
 ]
 
 CSS = """
@@ -511,6 +636,8 @@ def build():
 <div class="grid">{cards}</div>
 <h2>Vantly Cancellations <span class="soon">Coming soon</span></h2>
 <div class="grid"><a class="card" href="/help/cancellations/"><strong>Cancellations guides</strong><span>Self-serve cancels with save offers. See how it will work.</span></a></div>
+<h2>Vantly Discounts <span class="soon">Coming soon</span></h2>
+<div class="grid"><a class="card" href="/help/discounts/"><strong>Discounts guides</strong><span>One discount, many offers. See how it will work.</span></a></div>
 <h2 id="faq">Vantly Returns: frequently asked questions</h2>
 {faq}
 <p class="more">Can't find an answer? Email <a href="mailto:{CONTACT}">{CONTACT}</a>.</p>
@@ -558,7 +685,38 @@ def build():
 </article>
 """
         (cdir / f'{a["slug"]}.html').write_text(page(a["title"], a["summary"], body, True, "Cancellations", home))
-    print(f"Built {len(ARTICLES)} articles + index, {len(CANCEL_ARTICLES)} Cancellations articles + index")
+    # Discounts help
+    ddir = out / "discounts"; ddir.mkdir(exist_ok=True)
+    dhome = "/help/discounts/"
+    dnote = '<p class="note"><strong>Coming soon.</strong> Vantly Discounts is in development. These guides show how it will work.</p>'
+    dcards = "".join(
+        f'<a class="card" href="/help/discounts/{a["slug"]}"><strong>{html.escape(a["title"])}</strong><span>{html.escape(a["summary"])}</span></a>'
+        for a in DISCOUNT_ARTICLES
+    )
+    dfaq = "".join(f"<details><summary>{html.escape(q)}</summary><p>{html.escape(a)}</p></details>" for q, a in DISCOUNT_FAQ)
+    dindex = f"""
+<h1>Vantly Discounts <span class="soon">Coming soon</span></h1>
+<p class="lede">One discount, many offers: product, order and shipping proposals built from reusable cart groups.</p>
+{dnote}
+<div class="grid">{dcards}</div>
+<h2 id="faq">Frequently asked questions</h2>
+{dfaq}
+<p class="more">Looking for another app? <a href="/help">Help center</a> · Questions? <a href="mailto:{CONTACT}">{CONTACT}</a></p>
+"""
+    (ddir / "index.html").write_text(page("Help center", "Guides and answers for Vantly Discounts.", dindex, True, "Discounts", "/help"))
+    for i, a in enumerate(DISCOUNT_ARTICLES):
+        nxt = DISCOUNT_ARTICLES[(i + 1) % len(DISCOUNT_ARTICLES)]
+        body = f"""
+<article class="article">
+{dnote}
+<h1>{html.escape(a["title"])}</h1>
+<p class="lede">{html.escape(a["summary"])}</p>
+{a["body"]}
+<p class="more">Next: <a href="/help/discounts/{nxt["slug"]}">{html.escape(nxt["title"])}</a> · <a href="{dhome}">All Discounts guides</a> · Questions? <a href="mailto:{CONTACT}">{CONTACT}</a></p>
+</article>
+"""
+        (ddir / f'{a["slug"]}.html').write_text(page(a["title"], a["summary"], body, True, "Discounts", dhome))
+    print(f"Built {len(ARTICLES)} articles + index, {len(CANCEL_ARTICLES)} Cancellations articles + index, {len(DISCOUNT_ARTICLES)} Discounts articles + index")
 
 
 if __name__ == "__main__":
