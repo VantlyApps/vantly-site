@@ -44,15 +44,17 @@ ARTICLES = [
         "summary": "Templates, colors, logo, text, and your return policy.",
         "body": """
 <p>The return portal is where customers start a return: they find their order, choose items and reasons, then pick how they'd like to be paid back.</p>
+<p>Go to <strong>Return portal</strong> in Vantly. The page has two tabs: <strong>Look</strong> for the design and <strong>Text</strong> for the wording.</p>
 <h2>Choose a template</h2>
-<p>Go to <strong>Return portal</strong> in Vantly. Pick a template:</p>
 <ul>
-<li><strong>Stella</strong>: one focused column that works well everywhere.</li>
-<li><strong>Terra</strong>: a wide layout with a large photo gallery and a summary beside it.</li>
+<li><strong>Side by side</strong> (the default): built for big screens. What the customer is returning sits on the left and the next step on the right, with no scrolling. On phones it becomes one column.</li>
+<li><strong>Classic</strong>: one bold, focused column with a floating bar, made for scrolling on every screen.</li>
 </ul>
-<p>The order lookup page and progress bar look the same in both.</p>
+<p>Customers can go back a step at any time, and their picks stay filled in.</p>
 <h2>Match your brand</h2>
-<p>Upload your logo and set your colors, corner style, and font. Every piece of text in the portal can be changed, including headings, buttons, and the confirmation messages. The preview updates as you type, and <strong>Open return portal</strong> lets you walk through it like a customer.</p>
+<p>On the <strong>Look</strong> tab, upload your logo and choose its position (left, center, or right). Vantly warns you if the logo is too small to look sharp. Then set your colors, corner style, and font.</p>
+<h2>Change the wording</h2>
+<p>On the <strong>Text</strong> tab, every piece of text in the portal can be changed, grouped by step: headings, buttons, hints, and confirmation messages. The preview updates as you type, and <strong>Open return portal</strong> lets you walk through it like a customer.</p>
 <h2>Show your return policy</h2>
 <p>Paste your policy into <strong>Return policy</strong> and it appears on the first page of the portal.</p>
 <h2>Where customers find it</h2>
@@ -66,19 +68,20 @@ ARTICLES = [
         "body": """
 <p>Your <strong>default settings</strong> cover every product. <strong>Rules</strong> change the terms for the products they match, like a longer window for snowboards or final sale for clearance items.</p>
 <h2>How rules are checked</h2>
-<p>Rules are checked from the top of the list, and each item follows the <strong>first rule that matches it</strong>. Anything no rule matches uses your default settings, which are always the last row. Use the arrows to change the order, and put narrow rules (like final sale) above broad ones.</p>
+<p>Rules are checked from the top of the list, and each item follows the <strong>first rule that matches it</strong>. Anything no rule matches uses your default settings, which are always the last row. Drag a rule by its ⋮⋮ handle to change the order, and put narrow rules (like final sale) above broad ones.</p>
 <h2>Create a rule</h2>
 <p>Go to <strong>Rules › Create rule</strong>.</p>
 <ul>
-<li><strong>Applies to</strong>: product tag, type, vendor, collection, SKU, price, order details, the customer (tags, past returns), or the return itself (reason, chosen option). Match any or all of them.</li>
-<li><strong>Returns</strong>: returnable or final sale, and the return window.</li>
-<li><strong>Return options</strong>: which of refund, store credit, exchange, and replacement customers can choose.</li>
+<li><strong>Applies to</strong>: the product (tag, collection, type, vendor, SKU, price, or where it shipped from), the order (tag, discount code, total, date, shipping country, whether it has Vantly package protection, or whether it contains a SKU), the customer (tag, past returns, order count), or the return itself (item condition, reason, chosen outcome, return value). Match any or all of them.</li>
+<li><strong>Returns</strong>: returnable or final sale, the return window, and whether it counts from delivery or shipment.</li>
+<li><strong>Return options</strong>: which of refund, store credit, exchange, and replacement customers can choose. These replace your default options for the items the rule matches.</li>
 <li><strong>Fees and bonus</strong>: restocking fee, return shipping fee, and bonus credit. Leave a field blank to use your default.</li>
-<li><strong>When opened</strong>: different terms for opened items, like store credit or exchange only. The portal then asks customers whether each item was opened.</li>
-<li><strong>Return reasons</strong>: a reason list just for these products (for example, boots: Too tight, Too loose, Wrong flex). End a reason with <code>*</code> to require a photo.</li>
-<li><strong>Extras</strong>: require a photo, approve automatically, let the customer keep the item (always, or only the first time), show a message, waive fees, ask the customer to agree to a statement, or send items to another return address.</li>
+<li><strong>Return reasons</strong>: a reason list just for these products (for example, boots: Too tight, Too loose, Wrong flex). Drag reasons to reorder them, and turn on <strong>Photo required</strong> for any reason that needs one.</li>
+<li><strong>Extras</strong>: require a photo, approve automatically, let the customer keep the item (always, or only the first time), show a message, waive fees, ask the customer to agree to a statement, tag the customer when approved, or send the items to a <a href="/help/reviewing-returns">return destination</a>.</li>
 <li><strong>Review and order</strong>: flag returns for review, use the rule only once per customer, or let rules below also apply.</li>
 </ul>
+<h2>Different terms for opened items</h2>
+<p>Make two rules, one with the condition <strong>Item condition is Opened</strong> and one with <strong>Item condition is Unopened</strong>, and give each its own options and fees. The portal then asks customers whether each item was opened. (Older rules may still show a <strong>When opened</strong> section; it keeps working.)</p>
 <h2>Test before going live</h2>
 <p><strong>Test on an order</strong> shows exactly which rules apply to a real order and why.</p>
 """,
@@ -90,7 +93,9 @@ ARTICLES = [
         "body": """
 <p>Every exchange or store credit is a sale you keep. Vantly helps customers choose them over a refund, without making refunds hard to find.</p>
 <h2>What customers can exchange for</h2>
-<p>When a customer chooses an exchange, they see <strong>other sizes and colors</strong> of the same product first, then <strong>similar products</strong>. In <strong>Settings › Exchanges</strong>, choose where similar products come from: the same product type, collection, vendor, or tag.</p>
+<p>When a customer chooses an exchange, they see <strong>other sizes and colors</strong> of the same product first, then <strong>similar products</strong> under "You might also like". If their reason is "too small" or "too big", the portal suggests one size up or down. In <strong>Settings › Exchanges</strong>, choose where similar products come from: the same product type, collection, vendor, or tag.</p>
+<h2>When the new item ships</h2>
+<p>In <strong>Settings › Exchanges</strong>, choose <strong>Send exchanges</strong>: after the returned item arrives, or as soon as the return is approved. If the new item is out of stock, Vantly gives store credit or a refund instead (your choice).</p>
 <h2>Encourage exchanges and store credit</h2>
 <p>In <strong>Settings › Return options</strong>, choose how the portal presents the options:</p>
 <ul>
@@ -105,7 +110,7 @@ ARTICLES = [
 <li><strong>Free swap</strong>: exchanges are always free. Only items that cost the same or less are offered.</li>
 <li><strong>Customer pays the difference</strong>: the customer keeps their original discount. If the new item costs more, they get a Shopify invoice for the difference, and the exchange ships once it's paid. The return page shows whether it's paid, and you can resend the invoice or copy the payment link. Vantly sends one reminder after 2 days.</li>
 </ul>
-<p>If the new item costs less, choose whether the rest becomes store credit, a refund, or nothing.</p>
+<p>If the new item costs less, choose whether the rest becomes store credit, a refund, or nothing. Staff can also change the price of any exchange on the return page before its order is created.</p>
 """,
     },
     {
@@ -114,6 +119,8 @@ ARTICLES = [
         "summary": "Approve, reject single items, adjust values, and complete returns.",
         "body": """
 <p>New returns appear on the <strong>Returns</strong> page. Open one to review it.</p>
+<h2>Work on many returns at once</h2>
+<p>On the <strong>Returns</strong> page, tick the returns you want, then choose <strong>Approve</strong>, <strong>Mark received</strong>, or <strong>Complete</strong> (up to 50 at a time). Vantly asks you to confirm, and tells you about any return it couldn't change.</p>
 <h2>Approve or reject</h2>
 <p><strong>Approve return</strong> accepts it in Shopify and emails the customer the next steps. <strong>Reject</strong> closes it and tells the customer why.</p>
 <p>To accept only some items, switch those items to <strong>Reject</strong> in the Items list and give a reason. The button then reads, for example, <strong>Approve 1 of 2 items</strong>.</p>
@@ -123,32 +130,41 @@ ARTICLES = [
 <p>When the package arrives, mark it <strong>received</strong>, choose whether to restock each item, then complete the return to issue the refund, store credit, or exchange order.</p>
 <h2>Green returns</h2>
 <p>When a rule lets the customer keep the item, there's nothing to ship back. The customer gets a "You can keep it" email and the return goes straight to payout.</p>
+<h2>Create a return for a customer</h2>
+<p>Customer called or emailed? On the <strong>Returns</strong> page, create a return yourself: find the order, pick the items, reason, and outcome. It's approved right away. You can let the customer keep the items, waive fees, and make an exception for items your rules block (it's noted on the return).</p>
+<h2>Restock as a different product</h2>
+<p>In <strong>Settings › Restock as</strong>, map a product to another one, for example an opened board back into stock as "Used". Choose whether the mapping applies always, only to opened items, or only to unopened ones. You can upload the mappings as a spreadsheet.</p>
+<h2>Return destinations</h2>
+<p>In <strong>Settings › Return destinations</strong>, add other addresses, like a supplier or a second warehouse. A rule's <strong>Where these items go back to</strong> sends matching items there, and labels are made out to that address. If a return mixes items for different places, the customer gets one return per destination. Turn off <strong>Count these items back into my inventory</strong> for drop-ship suppliers.</p>
 <h2>Bundles</h2>
-<p>Bundles sold as one product can be returned by their individual items. Set them up in <strong>Settings › Bundles</strong>.</p>
+<p>Bundles sold as one product can be returned by their individual items. Set them up in <strong>Settings › Bundles</strong>. The refund for each item is what the customer paid for the bundle, split by each item's current store price.</p>
 """,
     },
     {
         "slug": "labels",
         "title": "Return labels",
-        "summary": "Buy return labels with ShipStation or EasyPost, automatically or by hand.",
+        "summary": "Buy return labels with ShipStation, EasyPost, or Shippo, automatically or by hand.",
         "body": """
 <p>Vantly can buy return labels with your own carrier accounts and rates, then email them to the customer.</p>
 <h2>Which carriers?</h2>
-<p>Vantly connects to carriers <strong>through ShipStation or EasyPost</strong>, not one carrier at a time. Connect either one and you can use <strong>USPS, UPS, FedEx, DHL</strong>, and any other carrier in that account:</p>
+<p>Vantly connects to carriers <strong>through ShipStation, EasyPost, or Shippo</strong>, not one carrier at a time. Connect one and you can use <strong>USPS, UPS, FedEx, DHL</strong>, and any other carrier in that account:</p>
 <ul>
 <li><strong>ShipStation</strong>: the carriers you've connected in ShipStation, at your ShipStation rates.</li>
 <li><strong>EasyPost</strong>: EasyPost's discounted USPS, UPS, and FedEx rates, or your own carrier accounts added in EasyPost.</li>
+<li><strong>Shippo</strong>: Shippo's discounted USPS, UPS, FedEx, and DHL rates, or your own carrier accounts added in Shippo.</li>
 </ul>
-<p>A direct UPS connection is coming soon. Don't use either one? You can still add a label by hand on any return (paste a tracking number and label link).</p>
+<p>Don't use any of them? You can still add a label by hand on any return (paste a tracking number and label link).</p>
 <h2>Connect an account</h2>
-<p>Go to <strong>Integrations</strong> and open <strong>ShipStation</strong> or <strong>EasyPost</strong>. Paste your API key. Vantly lists the carriers connected to that account.</p>
+<p>Go to <strong>Integrations</strong> and open <strong>ShipStation</strong>, <strong>EasyPost</strong>, or <strong>Shippo</strong>. Paste your API key; Vantly checks it right away and stores it encrypted. It then lists the carriers connected to that account. Test keys work too, for free test labels.</p>
+<h2>International returns</h2>
+<p>For cross-border returns, ShipStation and EasyPost labels include returned-goods customs information automatically.</p>
 <h2>Label rules</h2>
 <ul>
 <li><strong>When buying a label, choose</strong>: cheapest, fastest, or best value.</li>
 <li><strong>Maximum label price</strong>: never pay more than this.</li>
 <li><strong>Only use some carriers and services</strong>: tick the carriers or single services you want.</li>
 <li><strong>Buy a label automatically when a return is approved</strong>.</li>
-<li><strong>Package size and weight</strong>: used for rates when products don't have their own.</li>
+<li><strong>Default package</strong>: weight is used when products don't have their own. Box size is optional (some carriers price by size).</li>
 </ul>
 <h2>Buy or add a label by hand</h2>
 <p>On a return, you can compare rates and buy a label, or add a label you already have (tracking number and link). Unused labels can be voided for a refund from the carrier.</p>
@@ -190,15 +206,48 @@ ARTICLES = [
     {
         "slug": "integrations",
         "title": "Integrations",
-        "summary": "ShipStation, EasyPost, Katana, and Klaviyo.",
+        "summary": "Labels, ShipBob, Katana, Klaviyo, Omnisend, Brevo, Slack, and webhooks.",
         "body": """
 <p>Go to <strong>Integrations</strong> to connect the tools you already use. Each one has its own page, and keys are stored encrypted.</p>
-<h2>ShipStation and EasyPost</h2>
+<h2>ShipStation, EasyPost, and Shippo</h2>
 <p>Buy return labels with your carrier accounts. See <a href="/help/labels">Return labels</a>.</p>
+<h2>ShipBob</h2>
+<p>If ShipBob runs your warehouse, Vantly creates each approved return in ShipBob (with the tracking number when there's a label) and marks the return received when the warehouse gets it. Paste a ShipBob personal access token (in ShipBob: <strong>Integrations › API Tokens › Generate New Token</strong>), choose the fulfillment center that receives returns, and choose what ShipBob does with returned items: ShipBob's default, restock, quarantine, or dispose. Items the customer keeps, and items going to a <a href="/help/reviewing-returns">return destination</a>, aren't sent to ShipBob.</p>
 <h2>Katana</h2>
 <p>If Katana manages your stock, Vantly restocks returned items in Katana (matched by SKU) so its numbers stay right. Choose the Katana location, and whether to restock in Katana only, Shopify only, or both. If Katana syncs stock to Shopify, choose Katana only.</p>
 <h2>Klaviyo</h2>
 <p>Paste a Klaviyo private API key with Accounts: Read, Events: Write, and Profiles: Write. Vantly sends an event for each return moment (for example <em>Vantly Return Requested</em> or <em>Vantly Return Refunded</em>) with the order, items, reasons, amount, and tracking. Build flows and segments on them. Add the flow filter <strong>NotifyCustomer is true</strong> so staff choices not to email the customer are respected.</p>
+<h2>Omnisend and Brevo</h2>
+<p>Paste your API key and Vantly sends the same return events to Omnisend or Brevo. Under <strong>Who emails your customers about returns?</strong>, choose Vantly or your email platform; if you choose the platform, Vantly's own customer emails stay off. Send a test event to confirm the key works.</p>
+<h2>Slack</h2>
+<p>Post returns to a channel, like #returns. Create an incoming webhook in Slack, paste the link (it starts with <code>https://hooks.slack.com/</code>), and choose what to post: new returns, only flagged returns, or new returns and every update. Each message shows the order, customer, outcome, amount, and items with reasons, plus a button that opens the return in Vantly.</p>
+<h2>Webhooks</h2>
+<p>Send return updates to any system, like a 3PL or ERP. Add an https endpoint and Vantly POSTs JSON to it every time a return changes (for example <code>return.label_created</code>). Each request is signed with your signing secret in the <code>X-Vantly-Signature</code> header.</p>
+<h2>Coming soon</h2>
+<p>Gorgias (see a customer's returns next to their tickets) and Shopify Flow.</p>
+""",
+    },
+    {
+        "slug": "team",
+        "title": "Team and permissions",
+        "summary": "Invite your team and choose what each person can do.",
+        "body": """
+<p>Until you add someone, everyone on your Shopify staff who opens Vantly is an Admin. To give people different access, go to <strong>Settings › Users and roles</strong>.</p>
+<h2>Roles</h2>
+<table class="table">
+<tr><th>Role</th><th>What they can do</th></tr>
+<tr><td>Admin</td><td>Everything, including users, settings, branding, and package protection.</td></tr>
+<tr><td>Manager</td><td>All return work, including refunds, exchanges, and price changes, plus rules and bundles.</td></tr>
+<tr><td>Agent</td><td>Review returns: approve, reject, notes, labels, and create returns. Can't issue money or change prices.</td></tr>
+<tr><td>Viewer</td><td>Can look at returns and analytics, but can't change anything.</td></tr>
+</table>
+<p>The store owner is always an Admin.</p>
+<h2>Invite someone</h2>
+<p>Add their email, an optional name, and a role. Tick <strong>Email them a link to the app</strong> to send them a way in. You can change someone's role or remove them at any time.</p>
+<h2>Everyone else</h2>
+<p><strong>Staff who aren't on the list</strong> sets the role for any other Shopify staff member who opens the app, or turns their access off.</p>
+<h2>Who did what</h2>
+<p>Every change on a return is saved in its history with the staff member's name.</p>
 """,
     },
     {
@@ -225,8 +274,15 @@ ARTICLES = [
 
 FAQ = [
     ("Does it create real Shopify returns?", "Yes. Each return is created in Shopify, so refunds, restocking, and reports stay in your Shopify admin."),
-    ("Can I connect USPS, UPS, FedEx, or DHL directly?", "Vantly connects to carriers through ShipStation or EasyPost. Connect either one and you can use USPS, UPS, FedEx, DHL, and the other carriers in that account, at your own rates (or EasyPost's discounted rates). A direct UPS connection is coming soon. No shipping account? You can still add a label by hand on any return."),
+    ("Can I connect USPS, UPS, FedEx, or DHL directly?", "Vantly connects to carriers through ShipStation, EasyPost, or Shippo. Connect one and you can use USPS, UPS, FedEx, DHL, and the other carriers in that account, at your own rates (or EasyPost's and Shippo's discounted rates). No shipping account? You can still add a label by hand on any return."),
     ("Do customers need an account?", "No. They find their order with the order number and email."),
+    ("Can I create a return for a customer myself?", "Yes. Click Create return on the Returns page, find the order, and pick the items and outcome. It's approved right away, and you can make exceptions to your rules."),
+    ("Can I approve or complete lots of returns at once?", "Yes. Tick returns on the Returns page and choose Approve, Mark received, or Complete, up to 50 at a time."),
+    ("Can I give my team limited access?", "Yes. In Settings › Users and roles, give each person a role: Admin, Manager, Agent, or Viewer. Agents can review returns but can't issue money."),
+    ("Can some returns go to a supplier or another warehouse?", "Yes. Add the address in Settings › Return destinations, then use a rule to send matching items there. Labels are made out to that address."),
+    ("Does it work with ShipBob?", "Yes. Approved returns are created in ShipBob, and Vantly marks them received when the warehouse gets them."),
+    ("Can my email platform send the return emails?", "Yes, with Klaviyo, Omnisend, or Brevo. Vantly sends an event for each return step, and you choose whether Vantly or your platform emails the customer."),
+    ("Can I get return alerts in Slack?", "Yes. Connect Slack under Integrations and choose new returns, flagged returns only, or every update."),
     ("Does it work with my theme?", "Yes. The portal and the protection widget are built to fit any theme. The widget's colors and text are yours."),
     ("What happens if I go over my plan's returns?", "Nothing stops. You'll see a notice with the plan that fits."),
     ("Who keeps the package protection fee?", "You do, all of it. Vantly doesn't take a share."),

@@ -64,19 +64,20 @@ footer { border-top:1px solid var(--line); padding:28px 0 40px; color:var(--mute
 
 <p>Your <strong>default settings</strong> cover every product. <strong>Rules</strong> change the terms for the products they match, like a longer window for snowboards or final sale for clearance items.</p>
 <h2>How rules are checked</h2>
-<p>Rules are checked from the top of the list, and each item follows the <strong>first rule that matches it</strong>. Anything no rule matches uses your default settings, which are always the last row. Use the arrows to change the order, and put narrow rules (like final sale) above broad ones.</p>
+<p>Rules are checked from the top of the list, and each item follows the <strong>first rule that matches it</strong>. Anything no rule matches uses your default settings, which are always the last row. Drag a rule by its ⋮⋮ handle to change the order, and put narrow rules (like final sale) above broad ones.</p>
 <h2>Create a rule</h2>
 <p>Go to <strong>Rules › Create rule</strong>.</p>
 <ul>
-<li><strong>Applies to</strong>: product tag, type, vendor, collection, SKU, price, order details, the customer (tags, past returns), or the return itself (reason, chosen option). Match any or all of them.</li>
-<li><strong>Returns</strong>: returnable or final sale, and the return window.</li>
-<li><strong>Return options</strong>: which of refund, store credit, exchange, and replacement customers can choose.</li>
+<li><strong>Applies to</strong>: the product (tag, collection, type, vendor, SKU, price, or where it shipped from), the order (tag, discount code, total, date, shipping country, whether it has Vantly package protection, or whether it contains a SKU), the customer (tag, past returns, order count), or the return itself (item condition, reason, chosen outcome, return value). Match any or all of them.</li>
+<li><strong>Returns</strong>: returnable or final sale, the return window, and whether it counts from delivery or shipment.</li>
+<li><strong>Return options</strong>: which of refund, store credit, exchange, and replacement customers can choose. These replace your default options for the items the rule matches.</li>
 <li><strong>Fees and bonus</strong>: restocking fee, return shipping fee, and bonus credit. Leave a field blank to use your default.</li>
-<li><strong>When opened</strong>: different terms for opened items, like store credit or exchange only. The portal then asks customers whether each item was opened.</li>
-<li><strong>Return reasons</strong>: a reason list just for these products (for example, boots: Too tight, Too loose, Wrong flex). End a reason with <code>*</code> to require a photo.</li>
-<li><strong>Extras</strong>: require a photo, approve automatically, let the customer keep the item (always, or only the first time), show a message, waive fees, ask the customer to agree to a statement, or send items to another return address.</li>
+<li><strong>Return reasons</strong>: a reason list just for these products (for example, boots: Too tight, Too loose, Wrong flex). Drag reasons to reorder them, and turn on <strong>Photo required</strong> for any reason that needs one.</li>
+<li><strong>Extras</strong>: require a photo, approve automatically, let the customer keep the item (always, or only the first time), show a message, waive fees, ask the customer to agree to a statement, tag the customer when approved, or send the items to a <a href="/help/reviewing-returns">return destination</a>.</li>
 <li><strong>Review and order</strong>: flag returns for review, use the rule only once per customer, or let rules below also apply.</li>
 </ul>
+<h2>Different terms for opened items</h2>
+<p>Make two rules, one with the condition <strong>Item condition is Opened</strong> and one with <strong>Item condition is Unopened</strong>, and give each its own options and fees. The portal then asks customers whether each item was opened. (Older rules may still show a <strong>When opened</strong> section; it keeps working.)</p>
 <h2>Test before going live</h2>
 <p><strong>Test on an order</strong> shows exactly which rules apply to a real order and why.</p>
 

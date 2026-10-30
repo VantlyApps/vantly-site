@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Integrations · Vantly Returns Help</title>
-<meta name="description" content="ShipStation, EasyPost, Katana, and Klaviyo.">
+<meta name="description" content="Labels, ShipBob, Katana, Klaviyo, Omnisend, Brevo, Slack, and webhooks.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,17 +60,27 @@ footer { border-top:1px solid var(--line); padding:28px 0 40px; color:var(--mute
 <main class="wrap">
 <article class="article">
 <h1>Integrations</h1>
-<p class="lede">ShipStation, EasyPost, Katana, and Klaviyo.</p>
+<p class="lede">Labels, ShipBob, Katana, Klaviyo, Omnisend, Brevo, Slack, and webhooks.</p>
 
 <p>Go to <strong>Integrations</strong> to connect the tools you already use. Each one has its own page, and keys are stored encrypted.</p>
-<h2>ShipStation and EasyPost</h2>
+<h2>ShipStation, EasyPost, and Shippo</h2>
 <p>Buy return labels with your carrier accounts. See <a href="/help/labels">Return labels</a>.</p>
+<h2>ShipBob</h2>
+<p>If ShipBob runs your warehouse, Vantly creates each approved return in ShipBob (with the tracking number when there's a label) and marks the return received when the warehouse gets it. Paste a ShipBob personal access token (in ShipBob: <strong>Integrations › API Tokens › Generate New Token</strong>), choose the fulfillment center that receives returns, and choose what ShipBob does with returned items: ShipBob's default, restock, quarantine, or dispose. Items the customer keeps, and items going to a <a href="/help/reviewing-returns">return destination</a>, aren't sent to ShipBob.</p>
 <h2>Katana</h2>
 <p>If Katana manages your stock, Vantly restocks returned items in Katana (matched by SKU) so its numbers stay right. Choose the Katana location, and whether to restock in Katana only, Shopify only, or both. If Katana syncs stock to Shopify, choose Katana only.</p>
 <h2>Klaviyo</h2>
 <p>Paste a Klaviyo private API key with Accounts: Read, Events: Write, and Profiles: Write. Vantly sends an event for each return moment (for example <em>Vantly Return Requested</em> or <em>Vantly Return Refunded</em>) with the order, items, reasons, amount, and tracking. Build flows and segments on them. Add the flow filter <strong>NotifyCustomer is true</strong> so staff choices not to email the customer are respected.</p>
+<h2>Omnisend and Brevo</h2>
+<p>Paste your API key and Vantly sends the same return events to Omnisend or Brevo. Under <strong>Who emails your customers about returns?</strong>, choose Vantly or your email platform; if you choose the platform, Vantly's own customer emails stay off. Send a test event to confirm the key works.</p>
+<h2>Slack</h2>
+<p>Post returns to a channel, like #returns. Create an incoming webhook in Slack, paste the link (it starts with <code>https://hooks.slack.com/</code>), and choose what to post: new returns, only flagged returns, or new returns and every update. Each message shows the order, customer, outcome, amount, and items with reasons, plus a button that opens the return in Vantly.</p>
+<h2>Webhooks</h2>
+<p>Send return updates to any system, like a 3PL or ERP. Add an https endpoint and Vantly POSTs JSON to it every time a return changes (for example <code>return.label_created</code>). Each request is signed with your signing secret in the <code>X-Vantly-Signature</code> header.</p>
+<h2>Coming soon</h2>
+<p>Gorgias (see a customer's returns next to their tickets) and Shopify Flow.</p>
 
-<p class="more">Next: <a href="/help/plans-and-billing">Plans and billing</a> · Questions? <a href="mailto:support@vantlyapps.com">support@vantlyapps.com</a></p>
+<p class="more">Next: <a href="/help/team">Team and permissions</a> · Questions? <a href="mailto:support@vantlyapps.com">support@vantlyapps.com</a></p>
 </article>
 </main>
 <footer><div class="wrap">© 2026 Vantly · <a href="/">vantlyapps.com</a> · <a href="/returns/">Returns</a> · <a href="/cancellations/">Cancellations</a> · <a href="/privacy">Privacy</a></div></footer>
