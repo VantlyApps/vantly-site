@@ -51,6 +51,8 @@ ARTICLES = [
 <li><strong>Classic</strong>: one bold, focused column with a floating bar, made for scrolling on every screen.</li>
 </ul>
 <p>Customers can go back a step at any time, and their picks stay filled in.</p>
+<h2>Review before submitting</h2>
+<p>After choosing how they're paid back, customers see a summary (what's going back, what they get, and the totals) and press <strong>Confirm</strong>. It's on by default. To create returns straight away instead, turn off <strong>Let customers review before submitting</strong> in <strong>Settings › Return options</strong>.</p>
 <h2>Match your brand</h2>
 <p>On the <strong>Look</strong> tab, upload your logo and choose its position (left, center, or right). Vantly warns you if the logo is too small to look sharp. Then set your colors, corner style, and font.</p>
 <h2>Change the wording</h2>
