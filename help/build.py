@@ -566,6 +566,8 @@ DISCOUNT_FAQ = [
     ("How do I set up buy 3, get 1 at 50% off?", "Same as buy one, get one: Quantity at least 3 in the group, How many 1 in the same group, Percentage 50, and Use up the matched items on. 4 in the cart gets 1 at half price, 8 gets 2. The cheapest one is the discounted one."),
     ("Is there a limit on how big a discount can be?", "Yes, Shopify's. Shopify passes at most 10,000 bytes of settings per discount to checkout: about 590 hand-picked products, or about 45 proposals. The Discount size meter under Summary shows how full it is, and warns when it gets close. If it gets too big, Vantly won't send it to Shopify; use collections or tags instead of long product lists, or split it into two discounts."),
     ("Why does Summary say the discount works on carts up to a number of items?", "Every collection and tag a discount checks is sent along with every item in the cart, and Shopify caps how much it sends. Checking many collections or tags lowers the biggest cart the discount still works on. Check fewer collections or tags, or combine them into one."),
+    ("What does the Free plan include?", "Every feature, with one discount turned on at a time (live or scheduled). A discount you add while one is already on is saved but stays off, marked Needs attention, until you upgrade or end the other one. Discounts that are already on keep working."),
+    ("How do I upgrade to Pro?", "Open Settings > Plan and billing and click Upgrade to Pro. Shopify shows its plan page; Pro starts with a 14-day free trial and is billed through your Shopify invoice. Pro runs as many discounts as you like."),
     ("Does it slow down checkout?", "No. The discount runs inside Shopify's checkout as a Shopify Function; it never waits on Vantly's servers."),
 ]
 
