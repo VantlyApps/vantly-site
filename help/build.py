@@ -547,6 +547,11 @@ DISCOUNT_FAQ = [
     ("Can I test a discount before customers see it?", "Yes. Turn on Test mode and only customers tagged test get it."),
     ("Does it stack with my other discounts?", "Only if you allow it under Combines with, on this discount and the other one."),
     ("Does it work with subscriptions?", "Yes. Choose all recurring payments or the first payment only."),
+    ("How do I set up buy one, get one free?", "Make a cart group for the product. Add a product proposal: under When the cart has, Quantity at least 1 in that group; under Discount these items, How many 1 in the same group; Percentage 100; and turn on Use up the matched items. It repeats for each pair: 2 in the cart gets 1 free, 4 gets 2 free."),
+    ("How do I set up buy 3, get 1 at 50% off?", "Same as buy one, get one: Quantity at least 3 in the group, How many 1 in the same group, Percentage 50, and Use up the matched items on. 4 in the cart gets 1 at half price, 8 gets 2. The cheapest one is the discounted one."),
+    ("Is there a limit on how big a discount can be?", "Yes, Shopify's. Shopify passes at most 10,000 bytes of settings per discount to checkout: about 590 hand-picked products, or about 45 proposals. Once a discount is half full, a size meter shows under Summary. If it gets too big, Vantly won't send it to Shopify; use collections or tags instead of long product lists, or split it into two discounts."),
+    ("Why does Summary say the discount works on carts up to a number of items?", "Every collection and tag a discount checks is sent along with every item in the cart, and Shopify caps how much it sends. Checking many collections or tags lowers the biggest cart the discount still works on. Check fewer collections or tags, or combine them into one."),
+    ("Does it slow down checkout?", "No. The discount runs inside Shopify's checkout as a Shopify Function; it never waits on Vantly's servers."),
 ]
 
 CSS = """
