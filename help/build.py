@@ -51,6 +51,9 @@ ARTICLES = [
 <li><strong>Classic</strong>: one bold, focused column with a floating bar, made for scrolling on every screen.</li>
 </ul>
 <p>Customers can go back a step at any time, and their picks stay filled in.</p>
+<h2>A different choice for each item</h2>
+<p>When a customer returns 2 or more items, they choose what they'd like for each one, one item at a time ("Item 1 of 3"), then see <strong>Review your choices</strong> with the total. One item can be a refund and another an exchange. Finished items get a check in the list, and customers can click one to change it. (Items from a bundle get one choice for the whole return.)</p>
+<p>Each different choice becomes its own return in Vantly, linked together. They go back in one box with one label, and the return shipping fee is charged once. See <a href="/help/reviewing-returns">Reviewing returns</a>.</p>
 <h2>Review before submitting</h2>
 <p>After choosing how they're paid back, customers see a summary (what's going back, what they get, and the totals) and press <strong>Confirm</strong>. It's on by default. To create returns straight away instead, turn off <strong>Let customers review before submitting</strong> in <strong>Settings › Return options</strong>.</p>
 <h2>Match your brand</h2>
@@ -132,8 +135,17 @@ ARTICLES = [
 <p>When the package arrives, mark it <strong>received</strong>, choose whether to restock each item, then complete the return to issue the refund, store credit, or exchange order.</p>
 <h2>Green returns</h2>
 <p>When a rule lets the customer keep the item, there's nothing to ship back. The customer gets a "You can keep it" email and the return goes straight to payout.</p>
+<h2>Linked returns (different choices per item)</h2>
+<p>When a customer picks, say, a refund for one item and an exchange for another, you get one return per choice. Each one shows a banner, <strong>The customer chose something different for other items</strong>, with links to the others. Approve and process each one on its own. They share one box and one label, so marking one received marks the others received too.</p>
+<p>The customer gets one email per step for the whole box (requested, approved, label, received); refund, store credit, and exchange emails go out per return. If the exchange costs more than the item it replaces, money from the refund or credit returns in the same box pays toward it first.</p>
 <h2>Create a return for a customer</h2>
-<p>Customer called or emailed? On the <strong>Returns</strong> page, create a return yourself: find the order, pick the items, reason, and outcome. It's approved right away. You can let the customer keep the items, waive fees, and make an exception for items your rules block (it's noted on the return).</p>
+<p>Customer called or emailed? Click <strong>Create return</strong> on the <strong>Returns</strong> page and find the order. It works like the portal, in three steps:</p>
+<ol>
+<li><strong>Items</strong>: click <strong>Add details</strong> on each item the customer is sending back. Finished items show a ✓ and their choice; click <strong>Edit</strong> to change one.</li>
+<li><strong>One screen per item</strong>: quantity, reason (or <strong>Other (type a reason)</strong>), condition, and <strong>What the customer gets</strong>: exchange (another size or color, or something else), store credit, or refund. Choose <strong>Full value</strong>, <strong>Set an amount ($)</strong>, or <strong>Set a percentage (%)</strong>, and add an optional note and photos (for example, photos the customer emailed you).</li>
+<li><strong>Review</strong>: check the items and value, then choose <strong>Customer keeps the items</strong>, <strong>Waive all fees</strong>, <strong>Flag this return</strong>, <strong>Needs review</strong>, and <strong>Email the customer</strong>. Click <strong>Submit</strong>.</li>
+</ol>
+<p>It's approved right away unless you turn on <strong>Needs review</strong>. Items your rules block can still be added; it's noted on the return as an exception. Different choices for different items become linked returns, one per choice.</p>
 <h2>Restock as a different product</h2>
 <p>In <strong>Settings › Restock as</strong>, map a product to another one, for example an opened board back into stock as "Used". Choose whether the mapping applies always, only to opened items, or only to unopened ones. You can upload the mappings as a spreadsheet.</p>
 <h2>Return destinations</h2>
@@ -278,7 +290,8 @@ FAQ = [
     ("Does it create real Shopify returns?", "Yes. Each return is created in Shopify, so refunds, restocking, and reports stay in your Shopify admin."),
     ("Can I connect USPS, UPS, FedEx, or DHL directly?", "Vantly connects to carriers through ShipStation, EasyPost, or Shippo. Connect one and you can use USPS, UPS, FedEx, DHL, and the other carriers in that account, at your own rates (or EasyPost's and Shippo's discounted rates). No shipping account? You can still add a label by hand on any return."),
     ("Do customers need an account?", "No. They find their order with the order number and email."),
-    ("Can I create a return for a customer myself?", "Yes. Click Create return on the Returns page, find the order, and pick the items and outcome. It's approved right away, and you can make exceptions to your rules."),
+    ("Can I create a return for a customer myself?", "Yes. Click Create return on the Returns page, find the order, and add details for each item: reason, what the customer gets, and the amount (full value, a set amount, or a percentage). It's approved right away unless you turn on Needs review, and you can make exceptions to your rules."),
+    ("Can a customer get a refund for one item and an exchange for another?", "Yes. With 2 or more items, the portal asks what they'd like for each item, one at a time. Each choice becomes its own linked return in Vantly, shipped back in one box with one label, and the return shipping fee is charged once."),
     ("Can I approve or complete lots of returns at once?", "Yes. Tick returns on the Returns page and choose Approve, Mark received, or Complete, up to 50 at a time."),
     ("Can I give my team limited access?", "Yes. In Settings › Users and roles, give each person a role: Admin, Manager, Agent, or Viewer. Agents can review returns but can't issue money."),
     ("Can some returns go to a supplier or another warehouse?", "Yes. Add the address in Settings › Return destinations, then use a rule to send matching items there. Labels are made out to that address."),
@@ -441,13 +454,14 @@ DISCOUNT_ARTICLES = [
 <li><strong><a href="/help/discounts/proposals">Proposals</a></strong>: "when the cart has this, discount those lines by this much". A proposal can take money off items, the order subtotal, or shipping.</li>
 </ul>
 <h2>How checkout picks the offer</h2>
-<p>Product proposals are checked from the top of the list; each item gets at most one, so the first proposal an item fits wins. For order and shipping proposals, the first one that qualifies wins. Drag ⋮⋮ to change the order.</p>
+<p>Product proposals are checked from the top of the list; each item gets at most one, so the first proposal an item fits wins. For order and shipping proposals, the first one that qualifies wins. Drag ⋮⋮ to change the order, and switch a proposal off without deleting it.</p>
 <p>The discount is worked out inside Shopify's checkout, so it's fast and keeps working even if Vantly is briefly unavailable.</p>
 <h2>Make your first discount</h2>
 <ol>
-<li>Click <strong>Create discount</strong>. Pick a code or make it automatic, and set when it runs.</li>
-<li>Add cart groups for the products you want to discount.</li>
-<li>Add proposals that say what each group gets: an amount, a percentage, or a fixed price.</li>
+<li>Click <strong>Create discount</strong>. Everything is on one page: give it a name, pick <strong>Discount code</strong> or <strong>Automatic</strong>, and set the schedule and conditions on the right.</li>
+<li>Click <strong>Add cart group</strong> for the products you want to discount. Groups and proposals open in a pop-up.</li>
+<li>Add proposals (for example <strong>Add product proposal</strong>) that say what each group gets: an amount, a percentage, or a fixed price. <strong>Summary</strong> describes each one in a plain sentence.</li>
+<li>Click <strong>Create discount</strong> at the top to save it to Shopify. Until then, nothing is saved.</li>
 <li>Turn on <strong>Test mode</strong>, add products to your cart as a customer tagged <code>test</code>, and check the price.</li>
 </ol>
 <p>The discount also shows in Shopify's own discount list, and opening it there brings you back to Vantly's editor.</p>
@@ -461,17 +475,17 @@ DISCOUNT_ARTICLES = [
 <p>A cart group is a named set of products that proposals check and discount, like "Boards" or "Bindings". Only you see the name.</p>
 <h2>What can put an item in a group</h2>
 <ul>
-<li><strong>Product</strong>, <strong>Collection</strong>, or <strong>Product tag</strong> (is or is not).</li>
-<li><strong>Product or variant metafield</strong> equals or doesn't equal a value.</li>
+<li><strong>Products</strong> (pick as many as you like), <strong>Collection</strong>, or <strong>Product tag</strong> (is or is not).</li>
+<li><strong>Product or variant metafield</strong> equals or doesn't equal a value. Checkout reads the product's metafield.</li>
 <li><strong>Line attribute</strong> equals or doesn't equal a value.</li>
 <li><strong>Line quantity</strong> or <strong>Item price</strong> is at least an amount.</li>
 <li><strong>Purchase type</strong>: one-time or subscription.</li>
 <li><strong>Compare-at price</strong>: set (already on sale) or none (not already on sale).</li>
 </ul>
 <h2>Order matters</h2>
-<p>Groups are checked from the top. An item joins only the first group it fits, unless you turn on <strong>An item can join every group it fits</strong>. <strong>All</strong> always holds every item in the cart.</p>
+<p>Choose whether an item joins when it fits <strong>All conditions</strong> or <strong>Any condition</strong>. Groups are checked from the top. An item joins only the first group it fits, unless you turn on <strong>An item can join every group it fits</strong>. <strong>All</strong> always holds every item in the cart.</p>
 <h2>Limits</h2>
-<p>One discount can use up to 10 different collections and 10 different product tags across its groups. Groups that use a metafield or line attribute need its key under <strong>Advanced</strong> on the discount; Shopify allows one of each per discount.</p>
+<p>One discount can use up to 100 different collections and 100 different product tags across its groups, but each one you check lowers the biggest cart the discount works on (see <a href="/help/discounts/troubleshooting">A discount isn't applying</a>). Groups that use a metafield or line attribute need its key under <strong>Advanced</strong> on the discount; Shopify allows one of each per discount.</p>
 """,
     },
     {
@@ -481,10 +495,11 @@ DISCOUNT_ARTICLES = [
         "body": """
 <p>A proposal is one offer inside a discount. It has two parts.</p>
 <h2>1. When the cart has</h2>
-<p>The conditions the cart must meet. Pick a <strong>measure</strong> (quantity, total, unique products, unique variants, or unique groups), <strong>at least</strong> or <strong>at most</strong>, a number, and the group to count in. Add more conditions with <strong>Add another group</strong>. With no conditions, it applies to every cart.</p>
-<h2>2. Discount these lines</h2>
-<p>Pick the group to discount (or every item in the cart), and <strong>How many items</strong>: leave it empty for all of them, or enter a number to discount only the cheapest ones.</p>
-<h2>By how much</h2>
+<p>The conditions the cart must meet. Pick a <strong>Measure</strong> (Quantity, Total, Unique products, Unique variants, or Unique groups), at least or at most, an amount, and the group to count <strong>In group</strong>. Add more with <strong>And another condition</strong>. With no conditions, it applies to every cart.</p>
+<h2>2. Discount these items</h2>
+<p>(Product proposals only.) Pick the group to discount, or <strong>All (every item)</strong>, and <strong>How many</strong>: leave it at All, or enter a number to discount only the cheapest ones. <strong>Add another group</strong> discounts items in more groups.</p>
+<h2>3. By</h2>
+<p>Pick a <strong>Discount type</strong>:</p>
 <ul>
 <li><strong>Amount</strong>: money off each item, for example $50 off.</li>
 <li><strong>Percentage</strong>: percent off each item, for example 25% off.</li>
@@ -492,9 +507,9 @@ DISCOUNT_ARTICLES = [
 </ul>
 <p>Turn on <strong>Apply to compare-at price</strong> to take the discount off the higher compare-at price instead of today's price (never more than today's price).</p>
 <h2>Use up the matched items</h2>
-<p>With <strong>Use up the matched items</strong> on, items counted toward this proposal can't count toward later ones, and with a number in How many items, the offer repeats for every full set in the cart (for example, buy 2 boards and get 1 binding free, for each set).</p>
-<h2>Message in the cart</h2>
-<p>Text shown next to the discounted items at checkout. Leave it empty for the default. For codes, Shopify shows the code instead.</p>
+<p>With <strong>Use up the matched items</strong> on, items counted toward this proposal can't count toward later ones, and with a number in How many, the offer repeats for every full set in the cart (for example, buy 2 boards and get 1 binding free, for each set).</p>
+<h2>Currency</h2>
+<p>A proposal works in <strong>All currencies</strong> by default (amounts are converted from your store currency), or pick one currency so it only applies to carts in that currency.</p>
 """,
     },
     {
@@ -511,7 +526,7 @@ DISCOUNT_ARTICLES = [
 <li><strong>Subscriptions</strong>: all recurring payments, or the first payment only.</li>
 </ul>
 <h2>Conditions</h2>
-<p>Limit the whole discount to certain customer tags, countries, or currencies (none ticked means all), require a cart attribute, and choose whether B2B customers get it. <strong>Test mode</strong> gives it only to customers tagged <code>test</code>.</p>
+<p>Turn on <strong>Only some currencies</strong>, <strong>Only some countries</strong>, or <strong>Only customers with tags</strong> (type the tags, separated by commas) to limit the whole discount, <strong>Require a cart attribute</strong>, and choose <strong>Include B2B customers</strong>. <strong>Test mode</strong> gives it only to customers tagged <code>test</code>.</p>
 <h2>Schedule</h2>
 <p>Set when it starts and, optionally, when it ends. Times are in your store's time zone. The list shows each discount as Active, Scheduled, Expired, Draft, or Needs attention.</p>
 """,
@@ -533,7 +548,7 @@ DISCOUNT_ARTICLES = [
 <h2>5. Does it combine?</h2>
 <p>If the cart already has another discount, check <strong>Combines with</strong> on both.</p>
 <h2>What "Needs attention" means</h2>
-<p>Vantly couldn't update the discount in Shopify, for example because a group was deleted, a metafield key is missing, or it uses more than 10 collections or tags. Shopify keeps using the last version that worked until you fix it. The discount page says what's wrong.</p>
+<p>Vantly couldn't update the discount in Shopify, for example because a group was deleted, a metafield key is missing, it uses more than 100 collections or tags, or it's too big for Shopify (see the size meter under <strong>Summary</strong>). Shopify keeps using the last version that worked until you fix it. The discount page says what's wrong.</p>
 """,
     },
 ]
@@ -542,7 +557,7 @@ DISCOUNT_FAQ = [
     ("When is Vantly Discounts available?", "It's in development and coming soon to the Shopify App Store. Email support@vantlyapps.com to hear when it launches."),
     ("Can one discount have several offers?", "Yes. That's the point: one discount holds many proposals, checked from the top, for products, the order, and shipping."),
     ("Can an item get two proposals?", "No. Each item gets at most one product proposal: the first one it fits."),
-    ("Can I discount only the cheapest items?", "Yes. In the proposal, set How many items to a number and the cheapest ones are discounted."),
+    ("Can I discount only the cheapest items?", "Yes. In the proposal, under Discount these items, set How many to a number and the cheapest ones are discounted."),
     ("Does it work with codes and automatic discounts?", "Yes, either one. You can switch later."),
     ("Can I test a discount before customers see it?", "Yes. Turn on Test mode and only customers tagged test get it."),
     ("Does it stack with my other discounts?", "Only if you allow it under Combines with, on this discount and the other one."),
