@@ -476,7 +476,7 @@ DISCOUNT_ARTICLES = [
 <h2>What can put an item in a group</h2>
 <ul>
 <li><strong>Products</strong> (pick as many as you like), <strong>Collection</strong>, or <strong>Product tag</strong> (is or is not).</li>
-<li><strong>Product or variant metafield</strong> equals or doesn't equal a value. Checkout reads the product's metafield.</li>
+<li><strong>Product metafield</strong> equals or doesn't equal a value (the product's metafield; variant metafields aren't checked).</li>
 <li><strong>Line attribute</strong> equals or doesn't equal a value.</li>
 <li><strong>Line quantity</strong> or <strong>Item price</strong> is at least an amount.</li>
 <li><strong>Purchase type</strong>: one-time or subscription.</li>
@@ -505,6 +505,7 @@ DISCOUNT_ARTICLES = [
 <li><strong>Percentage</strong>: percent off each item, for example 25% off.</li>
 <li><strong>Fixed price</strong>: the item sells for a set price, for example $149.</li>
 </ul>
+<p>On an order proposal, Amount and Percentage come off the order subtotal (Fixed price isn't offered). On a shipping proposal, Amount comes off each shipping option, Percentage off shipping (100% makes it free), and Fixed price sets what shipping costs, for example $4.99.</p>
 <p>Turn on <strong>Apply to compare-at price</strong> to take the discount off the higher compare-at price instead of today's price (never more than today's price).</p>
 <h2>Use up the matched items</h2>
 <p>With <strong>Use up the matched items</strong> on, items counted toward this proposal can't count toward later ones, and with a number in How many, the offer repeats for every full set in the cart (for example, buy 2 boards and get 1 binding free, for each set).</p>
@@ -548,7 +549,7 @@ DISCOUNT_ARTICLES = [
 <h2>5. Does it combine?</h2>
 <p>If the cart already has another discount, check <strong>Combines with</strong> on both.</p>
 <h2>What "Needs attention" means</h2>
-<p>Vantly couldn't update the discount in Shopify, for example because a group was deleted, a metafield key is missing, it uses more than 100 collections or tags, or it's too big for Shopify (see the size meter under <strong>Summary</strong>). Shopify keeps using the last version that worked until you fix it. The discount page says what's wrong.</p>
+<p>Vantly couldn't update the discount in Shopify, for example because a group was deleted, a metafield key is missing, it uses more than 100 collections or tags, it's too big for Shopify (see the size meter under <strong>Summary</strong>), or you're on the Free plan and another discount is already on. Shopify keeps using the last version that worked until you fix it. The discount page says what's wrong.</p>
 """,
     },
 ]
