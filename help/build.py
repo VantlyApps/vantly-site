@@ -5,6 +5,8 @@ Edit an article here, then run:  python3 help/build.py
 Each article is served at vantlyapps.com/help/<slug>; the app links to them.
 """
 import html
+import json
+import re
 from pathlib import Path
 
 HERE = Path(__file__).parent
@@ -612,19 +614,149 @@ summary { cursor:pointer; font-weight:600; }
 details p { margin:10px 0 0; color:var(--muted); }
 .more { margin-top:44px; padding-top:22px; border-top:1px solid var(--line); color:var(--muted); }
 footer { border-top:1px solid var(--line); padding:28px 0 40px; color:var(--muted); font-size:14px; }
+.trail { display:flex; align-items:center; gap:8px; min-width:0; }
+.trail .sep { color:var(--line); }
+.trail .crumb { white-space:nowrap; }
+.trail .crumb:last-child { color:var(--ink); }
+@media (max-width:560px) { .trail { display:none; } }
+.hero { padding:18px 0 8px; }
+.hero h1 { margin-bottom:6px; }
+.hero .lede { margin-bottom:22px; }
+.search { position:relative; display:flex; align-items:center; max-width:640px; margin:0 0 30px; }
+.search svg { position:absolute; left:16px; width:18px; height:18px; color:var(--muted); pointer-events:none; }
+.search input { width:100%; font:inherit; font-size:17px; color:var(--ink); background:var(--soft); border:1px solid var(--line); border-radius:14px; padding:14px 48px 14px 46px; outline:none; transition:border-color .15s, box-shadow .15s; -webkit-appearance:none; appearance:none; }
+.search input:focus { border-color:var(--teal); box-shadow:0 0 0 3px color-mix(in srgb, var(--teal) 18%, transparent); background:var(--bg); }
+.search kbd { position:absolute; right:14px; font:600 12px "Inter",sans-serif; color:var(--muted); border:1px solid var(--line); border-radius:6px; padding:1px 7px; background:var(--bg); }
+.search input:focus + kbd, .search input:not(:placeholder-shown) + kbd { display:none; }
+@media (max-width:560px) { .search kbd { display:none; } .search input { padding-right:16px; } }
+.hs-results { display:grid; gap:10px; max-width:760px; }
+.hs-count { color:var(--muted); margin:0 0 4px; font-size:15px; }
+.hs-hit { display:grid; gap:4px; padding:14px 16px; border:1px solid var(--line); border-radius:12px; text-decoration:none; color:var(--ink); }
+.hs-hit:hover, .hs-hit:focus-visible { border-color:color-mix(in srgb, var(--teal) 45%, var(--line)); outline:none; }
+.hs-meta { display:flex; gap:8px; font-size:12px; font-weight:600; }
+.hs-app { color:var(--teal); }
+.hs-type { color:var(--muted); }
+.hs-snip { color:var(--muted); font-size:.94rem; line-height:1.45; }
+.hs-hit mark { background:color-mix(in srgb, var(--mint) 35%, transparent); color:inherit; border-radius:3px; padding:0 1px; }
+.hs-more { color:var(--muted); font-size:15px; margin:8px 0 0; }
+.apps { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:14px; }
+.appcard { display:flex; flex-direction:column; gap:10px; padding:22px; border:1px solid var(--line); border-radius:16px; text-decoration:none; color:var(--ink); transition:border-color .2s, transform .2s, box-shadow .2s; }
+.appcard:hover { border-color:color-mix(in srgb, var(--teal) 45%, var(--line)); transform:translateY(-2px); box-shadow:0 12px 28px -20px rgba(0,0,0,.35); }
+.apptop strong { font:700 1.3rem/1.2 "Inter Tight","Inter",sans-serif; letter-spacing:-0.02em; }
+.appdesc { color:var(--muted); font-size:.95rem; line-height:1.45; }
+.appcount { font-size:13px; font-weight:600; color:var(--muted); }
+.applist { display:flex; flex-wrap:wrap; gap:6px; }
+.applist span { font-size:13px; padding:3px 10px; border-radius:99px; background:var(--soft); border:1px solid var(--line); }
+.appgo { margin-top:auto; padding-top:4px; color:var(--teal); font-weight:600; font-size:15px; }
+.tabs { display:flex; gap:6px; overflow-x:auto; scrollbar-width:none; margin:0 0 26px; padding:4px; border:1px solid var(--line); border-radius:12px; width:fit-content; max-width:100%; }
+.tab { white-space:nowrap; flex:none; padding:7px 14px; border-radius:9px; text-decoration:none; color:var(--muted); font-weight:600; font-size:15px; }
+.tab:hover { color:var(--ink); }
+.tab.on { background:var(--soft); color:var(--ink); box-shadow:inset 0 0 0 1px var(--line); }
+.tab .soon { margin-left:4px; font-size:.66rem; padding:1px 6px; }
+details[open] summary { color:var(--teal); }
+[hidden] { display:none !important; }
+main.wrap { padding-top:40px; padding-bottom:72px; }
+@media (max-width:560px) { main.wrap { padding-top:24px; } .tab { padding:7px 11px; font-size:14px; } }
 """
 
 MARK = '<svg viewBox="12 9 40 48" aria-hidden="true"><g transform="translate(1.5 6)"><path d="M16 20 L30 46 L41 25 C45 17 42 11 35 11 L31 11" fill="none" stroke="#0F6E56" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 11 L32 6 L32 16 Z" fill="#5DCAA5" stroke="#5DCAA5" stroke-width="2" stroke-linejoin="round"/></g></svg>'
 CONTACT = "support@vantlyapps.com"
 
 
-def page(title: str, description: str, body: str, crumb: bool, app: str = "Returns", home: str = "/help") -> str:
+APPS = [
+    {"key": "returns", "name": "Returns", "home": "/help/returns/", "prefix": "/help/", "soon": False,
+     "lede": "Returns, exchanges, store credit, labels and package protection for your Shopify store.",
+     "articles": "ARTICLES", "faq": "FAQ"},
+    {"key": "cancellations", "name": "Cancellations", "home": "/help/cancellations/", "prefix": "/help/cancellations/", "soon": True,
+     "lede": "Let customers cancel unshipped orders on their own, and save the ones you can.",
+     "articles": "CANCEL_ARTICLES", "faq": "CANCEL_FAQ"},
+    {"key": "discounts", "name": "Discounts", "home": "/help/discounts/", "prefix": "/help/discounts/", "soon": True,
+     "lede": "One discount, many offers: product, order and shipping proposals built from reusable cart groups.",
+     "articles": "DISCOUNT_ARTICLES", "faq": "DISCOUNT_FAQ"},
+]
+
+SEARCH_JS = r"""
+(function(){
+  var box=document.getElementById('hs'), out=document.getElementById('hs-results'), hide=document.querySelectorAll('[data-hide-on-search]');
+  if(!box) return;
+  var scope=box.getAttribute('data-scope')||'', idx=null, loading=null;
+  function load(){ if(idx) return Promise.resolve(idx); if(!loading) loading=fetch('/help/search-index.json').then(function(r){return r.json();}).then(function(d){idx=d; return d;}); return loading; }
+  function norm(t){ return (t||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''); }
+  function el(tag,cls,text){ var e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e; }
+  function snippet(text,words){
+    var low=norm(text), at=-1;
+    for(var i=0;i<words.length;i++){ var k=low.indexOf(words[i]); if(k>=0 && (at<0||k<at)) at=k; }
+    if(at<0) return text.slice(0,150)+(text.length>150?'…':'');
+    var a=Math.max(0,at-60), b=Math.min(text.length,at+110);
+    return (a>0?'…':'')+text.slice(a,b).trim()+(b<text.length?'…':'');
+  }
+  function mark(node,text,words){
+    var low=norm(text), pos=0, re=[];
+    words.forEach(function(w){ var k=0; while(w && (k=low.indexOf(w,k))>=0){ re.push([k,k+w.length]); k+=w.length; } });
+    re.sort(function(x,y){return x[0]-y[0];});
+    re.forEach(function(r){ if(r[0]<pos) return; node.appendChild(document.createTextNode(text.slice(pos,r[0]))); node.appendChild(el('mark',null,text.slice(r[0],r[1]))); pos=r[1]; });
+    node.appendChild(document.createTextNode(text.slice(pos)));
+  }
+  function run(){
+    var q=box.value.trim(); out.textContent='';
+    for(var i=0;i<hide.length;i++) hide[i].hidden=!!q;
+    out.hidden=!q;
+    if(!q){ history.replaceState(null,'',location.pathname); return; }
+    history.replaceState(null,'',location.pathname+'?q='+encodeURIComponent(q));
+    load().then(function(d){
+      if(box.value.trim()!==q) return;
+      var words=norm(q).split(/\s+/).filter(function(w){return w.length>1 || /\d/.test(w);});
+      if(!words.length) words=[norm(q)];
+      var hits=[];
+      d.forEach(function(e){
+        if(scope && e.app!==scope) return;
+        var t=norm(e.title), body=norm(e.text), score=0, ok=true;
+        words.forEach(function(w){ var inT=t.indexOf(w)>=0, inB=body.indexOf(w)>=0; if(!inT&&!inB) ok=false; score+=(inT?10:0)+(inB?1:0); });
+        if(!ok) return;
+        if(t.indexOf(norm(q))>=0) score+=20;
+        if(e.type==='faq') score+=2;
+        hits.push({e:e,s:score});
+      });
+      hits.sort(function(a,b){return b.s-a.s;});
+      var head=el('p','hs-count', hits.length? (hits.length+(hits.length===1?' result':' results')+' for “'+q+'”') : 'No results for “'+q+'”.');
+      out.appendChild(head);
+      hits.slice(0,30).forEach(function(h){
+        var a=el('a','hs-hit'); a.href=h.e.url;
+        var top=el('span','hs-meta'); top.appendChild(el('span','hs-app',h.e.appName)); top.appendChild(el('span','hs-type',h.e.type==='faq'?'Question':'Guide')); a.appendChild(top);
+        var t=el('strong'); mark(t,h.e.title,words); a.appendChild(t);
+        var sn=el('span','hs-snip'); mark(sn,snippet(h.e.text,words),words); a.appendChild(sn);
+        out.appendChild(a);
+      });
+      if(!hits.length || scope){
+        var more=el('p','hs-more');
+        if(scope){ var l=el('a',null,'Search every app'); l.href='/help/?q='+encodeURIComponent(q); more.appendChild(document.createTextNode(hits.length?'Not it? ':'')); more.appendChild(l); more.appendChild(document.createTextNode(' · ')); }
+        more.appendChild(document.createTextNode('Still stuck? Email ')); var m=el('a',null,'support@vantlyapps.com'); m.href='mailto:support@vantlyapps.com'; more.appendChild(m);
+        out.appendChild(more);
+      }
+    });
+  }
+  var t; box.addEventListener('input',function(){ clearTimeout(t); t=setTimeout(run,120); });
+  box.addEventListener('focus',load,{once:true});
+  document.addEventListener('keydown',function(e){ if(e.key==='/' && document.activeElement!==box && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)){ e.preventDefault(); box.focus(); } });
+  var q0=new URLSearchParams(location.search).get('q'); if(q0){ box.value=q0; run(); }
+})();
+(function(){
+  function openHash(){ var id=location.hash.slice(1); if(!id) return; var d=document.getElementById(id); if(d && d.tagName==='DETAILS'){ d.open=true; d.scrollIntoView({block:'center'}); } }
+  window.addEventListener('hashchange',openHash); openHash();
+})();
+"""
+
+
+def page(title: str, description: str, body: str, crumbs: list, app: str = "", search: str | None = None) -> str:
+    trail = "".join(f'<span class="sep">/</span><a class="crumb" href="{h}">{html.escape(t)}</a>' for t, h in crumbs)
+    suffix = f"Vantly {app} Help" if app else "Vantly Help"
+    script = f"<script>{SEARCH_JS}</script>" if search is not None else ""
     return f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{html.escape(title)} · Vantly {app} Help</title>
+<title>{html.escape(title)} · {suffix}</title>
 <meta name="description" content="{html.escape(description)}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -635,111 +767,109 @@ def page(title: str, description: str, body: str, crumb: bool, app: str = "Retur
 <body>
 <nav class="nav" aria-label="Main"><div class="wrap">
   <a class="brand" href="/" aria-label="Vantly home">{MARK} vantly</a>
-  {f'<a class="crumb" href="{home}">Help center</a>' if crumb else ''}
-  <div class="links"><a href="/returns/">Returns</a><a href="/cancellations/">Cancellations</a><a href="/help">Help</a></div>
+  <div class="trail">{trail}</div>
+  <div class="links"><a href="/returns/">Returns</a><a href="/cancellations/">Cancellations</a><a href="/help/">Help</a></div>
 </div></nav>
 <main class="wrap">{body}</main>
 <footer><div class="wrap">© 2026 Vantly · <a href="/">vantlyapps.com</a> · <a href="/returns/">Returns</a> · <a href="/cancellations/">Cancellations</a> · <a href="/privacy">Privacy</a></div></footer>
+{script}
 </body>
 </html>
 """
 
 
+def slugify(t: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", t.lower()).strip("-")[:60]
+
+
+def text_of(h: str) -> str:
+    return html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", h))).strip()
+
+
+def tabs(active: str) -> str:
+    items = "".join(
+        f'<a class="tab{" on" if a["key"] == active else ""}" href="{a["home"]}"{" aria-current=page" if a["key"] == active else ""}>{a["name"]}</a>'
+        for a in APPS
+    )
+    return f'<div class="tabs" role="navigation" aria-label="Apps">{items}</div>'
+
+
+def searchbox(scope: str, placeholder: str) -> str:
+    return f"""<div class="search"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="m14 14 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input id="hs" type="search" data-scope="{scope}" placeholder="{html.escape(placeholder)}" aria-label="Search help" autocomplete="off"><kbd>/</kbd></div>
+<div id="hs-results" class="hs-results" aria-live="polite" hidden></div>"""
+
+
+def faq_html(faq) -> str:
+    return "".join(f'<details id="q-{slugify(q)}"><summary>{html.escape(q)}</summary><p>{html.escape(a)}</p></details>' for q, a in faq)
+
+
 def build():
     out = HERE
-    cards = "".join(
-        f'<a class="card" href="/help/{a["slug"]}"><strong>{html.escape(a["title"])}</strong><span>{html.escape(a["summary"])}</span></a>'
-        for a in ARTICLES
-    )
-    faq = "".join(f"<details><summary>{html.escape(q)}</summary><p>{html.escape(a)}</p></details>" for q, a in FAQ)
-    index = f"""
-<h1>Help center</h1>
-<p class="lede">Guides and answers for every Vantly app.</p>
-<h2>Vantly Returns</h2>
+    g = globals()
+    index_entries = []
+    hub_cards = ""
+    for app in APPS:
+        arts, faq = g[app["articles"]], g[app["faq"]]
+        name = f'Vantly {app["name"]}'
+        soon = ' <span class="soon">Coming soon</span>' if app["soon"] else ""
+        note = f'<p class="note"><strong>Coming soon.</strong> {name} is in development. These guides show how it will work.</p>' if app["soon"] else ""
+        url = lambda a: f'{app["prefix"]}{a["slug"]}'
+        for a in arts:
+            index_entries.append({"app": app["key"], "appName": app["name"], "type": "guide", "title": a["title"], "url": url(a), "text": a["summary"] + " " + text_of(a["body"])})
+        for q, ans in faq:
+            index_entries.append({"app": app["key"], "appName": app["name"], "type": "faq", "title": q, "url": f'{app["home"]}#q-{slugify(q)}', "text": ans})
+        cards = "".join(f'<a class="card" href="{url(a)}"><strong>{html.escape(a["title"])}</strong><span>{html.escape(a["summary"])}</span></a>' for a in arts)
+        home_body = f"""
+{tabs(app["key"])}
+<h1>{name}{soon}</h1>
+<p class="lede">{html.escape(app["lede"])}</p>
+{note}
+{searchbox(app["key"], f"Search {app['name']} help")}
+<div data-hide-on-search>
+<h2>Guides</h2>
 <div class="grid">{cards}</div>
-<h2>Vantly Cancellations <span class="soon">Coming soon</span></h2>
-<div class="grid"><a class="card" href="/help/cancellations/"><strong>Cancellations guides</strong><span>Self-serve cancels with save offers. See how it will work.</span></a></div>
-<h2>Vantly Discounts <span class="soon">Coming soon</span></h2>
-<div class="grid"><a class="card" href="/help/discounts/"><strong>Discounts guides</strong><span>One discount, many offers. See how it will work.</span></a></div>
-<h2 id="faq">Vantly Returns: frequently asked questions</h2>
-{faq}
+<h2 id="faq">Frequently asked questions</h2>
+{faq_html(faq)}
 <p class="more">Can't find an answer? Email <a href="mailto:{CONTACT}">{CONTACT}</a>.</p>
+</div>
 """
-    (out / "index.html").write_text(page("Help center", "Guides and answers for Vantly Returns and Vantly Cancellations.", index, False, "app").replace("· Vantly app Help", "· Vantly Help"))
-    for i, a in enumerate(ARTICLES):
-        nxt = ARTICLES[(i + 1) % len(ARTICLES)]
-        body = f"""
-<article class="article">
-<h1>{html.escape(a["title"])}</h1>
-<p class="lede">{html.escape(a["summary"])}</p>
-{a["body"]}
-<p class="more">Next: <a href="/help/{nxt["slug"]}">{html.escape(nxt["title"])}</a> · Questions? <a href="mailto:{CONTACT}">{CONTACT}</a></p>
-</article>
-"""
-        (out / f'{a["slug"]}.html').write_text(page(a["title"], a["summary"], body, True))
-    # Cancellations help
-    cdir = out / "cancellations"; cdir.mkdir(exist_ok=True)
-    home = "/help/cancellations/"
-    note = '<p class="note"><strong>Coming soon.</strong> Vantly Cancellations is in development. These guides show how it will work.</p>'
-    ccards = "".join(
-        f'<a class="card" href="/help/cancellations/{a["slug"]}"><strong>{html.escape(a["title"])}</strong><span>{html.escape(a["summary"])}</span></a>'
-        for a in CANCEL_ARTICLES
-    )
-    cfaq = "".join(f"<details><summary>{html.escape(q)}</summary><p>{html.escape(a)}</p></details>" for q, a in CANCEL_FAQ)
-    cindex = f"""
-<h1>Vantly Cancellations <span class="soon">Coming soon</span></h1>
-<p class="lede">Let customers cancel unshipped orders on their own, and save the ones you can.</p>
-{note}
-<div class="grid">{ccards}</div>
-<h2 id="faq">Frequently asked questions</h2>
-{cfaq}
-<p class="more">Looking for Vantly Returns? <a href="/help">Help center</a> · Questions? <a href="mailto:{CONTACT}">{CONTACT}</a></p>
-"""
-    (cdir / "index.html").write_text(page("Help center", "Guides and answers for Vantly Cancellations.", cindex, True, "Cancellations", "/help"))
-    for i, a in enumerate(CANCEL_ARTICLES):
-        nxt = CANCEL_ARTICLES[(i + 1) % len(CANCEL_ARTICLES)]
-        body = f"""
+        d = out / app["key"]; d.mkdir(exist_ok=True)
+        (d / "index.html").write_text(page(name, f"Guides and answers for {name}.", home_body, [("Help center", "/help/"), (app["name"], app["home"])], app["name"], search=app["key"]))
+        for i, a in enumerate(arts):
+            nxt = arts[(i + 1) % len(arts)]
+            body = f"""
 <article class="article">
 {note}
 <h1>{html.escape(a["title"])}</h1>
 <p class="lede">{html.escape(a["summary"])}</p>
 {a["body"]}
-<p class="more">Next: <a href="/help/cancellations/{nxt["slug"]}">{html.escape(nxt["title"])}</a> · <a href="{home}">All Cancellations guides</a> · Questions? <a href="mailto:{CONTACT}">{CONTACT}</a></p>
+<p class="more">Next: <a href="{url(nxt)}">{html.escape(nxt["title"])}</a> · <a href="{app["home"]}">All {app["name"]} help</a> · Questions? <a href="mailto:{CONTACT}">{CONTACT}</a></p>
 </article>
 """
-        (cdir / f'{a["slug"]}.html').write_text(page(a["title"], a["summary"], body, True, "Cancellations", home))
-    # Discounts help
-    ddir = out / "discounts"; ddir.mkdir(exist_ok=True)
-    dhome = "/help/discounts/"
-    dnote = '<p class="note"><strong>Coming soon.</strong> Vantly Discounts is in development. These guides show how it will work.</p>'
-    dcards = "".join(
-        f'<a class="card" href="/help/discounts/{a["slug"]}"><strong>{html.escape(a["title"])}</strong><span>{html.escape(a["summary"])}</span></a>'
-        for a in DISCOUNT_ARTICLES
-    )
-    dfaq = "".join(f"<details><summary>{html.escape(q)}</summary><p>{html.escape(a)}</p></details>" for q, a in DISCOUNT_FAQ)
-    dindex = f"""
-<h1>Vantly Discounts <span class="soon">Coming soon</span></h1>
-<p class="lede">One discount, many offers: product, order and shipping proposals built from reusable cart groups.</p>
-{dnote}
-<div class="grid">{dcards}</div>
-<h2 id="faq">Frequently asked questions</h2>
-{dfaq}
-<p class="more">Looking for another app? <a href="/help">Help center</a> · Questions? <a href="mailto:{CONTACT}">{CONTACT}</a></p>
+            target = out / f'{a["slug"]}.html' if app["key"] == "returns" else d / f'{a["slug"]}.html'
+            target.write_text(page(a["title"], a["summary"], body, [("Help center", "/help/"), (app["name"], app["home"])], app["name"]))
+        hub_cards += f"""<a class="appcard" href="{app["home"]}">
+<span class="apptop"><strong>{name}</strong>{soon}</span>
+<span class="appdesc">{html.escape(app["lede"])}</span>
+<span class="appcount">{len(arts)} guides · {len(faq)} questions answered</span>
+<span class="applist">{"".join(f"<span>{html.escape(a['title'])}</span>" for a in arts[:4])}</span>
+<span class="appgo">Open {app["name"]} help →</span>
+</a>"""
+    hub = f"""
+<section class="hero">
+<h1>How can we help?</h1>
+<p class="lede">Search every guide and question, or pick your app.</p>
+{searchbox("", "Search for exchanges, labels, BOGO, save offers…")}
+</section>
+<div data-hide-on-search>
+<div class="apps">{hub_cards}</div>
+<p class="more">Can't find an answer? Email <a href="mailto:{CONTACT}">{CONTACT}</a>.</p>
+</div>
+<script>if(location.hash==='#faq')location.replace('/help/returns/#faq');</script>
 """
-    (ddir / "index.html").write_text(page("Help center", "Guides and answers for Vantly Discounts.", dindex, True, "Discounts", "/help"))
-    for i, a in enumerate(DISCOUNT_ARTICLES):
-        nxt = DISCOUNT_ARTICLES[(i + 1) % len(DISCOUNT_ARTICLES)]
-        body = f"""
-<article class="article">
-{dnote}
-<h1>{html.escape(a["title"])}</h1>
-<p class="lede">{html.escape(a["summary"])}</p>
-{a["body"]}
-<p class="more">Next: <a href="/help/discounts/{nxt["slug"]}">{html.escape(nxt["title"])}</a> · <a href="{dhome}">All Discounts guides</a> · Questions? <a href="mailto:{CONTACT}">{CONTACT}</a></p>
-</article>
-"""
-        (ddir / f'{a["slug"]}.html').write_text(page(a["title"], a["summary"], body, True, "Discounts", dhome))
-    print(f"Built {len(ARTICLES)} articles + index, {len(CANCEL_ARTICLES)} Cancellations articles + index, {len(DISCOUNT_ARTICLES)} Discounts articles + index")
+    (out / "index.html").write_text(page("Help center", "Guides and answers for every Vantly app: Returns, Cancellations and Discounts.", hub, [("Help center", "/help/")], "", search=""))
+    (out / "search-index.json").write_text(json.dumps(index_entries, ensure_ascii=False, separators=(",", ":")))
+    print(f"Built help for {', '.join(f'{a['name']} ({len(g[a['articles']])} guides, {len(g[a['faq']])} FAQs)' for a in APPS)}; search index {len(index_entries)} entries")
 
 
 if __name__ == "__main__":

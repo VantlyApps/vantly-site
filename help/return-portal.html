@@ -49,16 +49,60 @@ summary { cursor:pointer; font-weight:600; }
 details p { margin:10px 0 0; color:var(--muted); }
 .more { margin-top:44px; padding-top:22px; border-top:1px solid var(--line); color:var(--muted); }
 footer { border-top:1px solid var(--line); padding:28px 0 40px; color:var(--muted); font-size:14px; }
+.trail { display:flex; align-items:center; gap:8px; min-width:0; }
+.trail .sep { color:var(--line); }
+.trail .crumb { white-space:nowrap; }
+.trail .crumb:last-child { color:var(--ink); }
+@media (max-width:560px) { .trail { display:none; } }
+.hero { padding:18px 0 8px; }
+.hero h1 { margin-bottom:6px; }
+.hero .lede { margin-bottom:22px; }
+.search { position:relative; display:flex; align-items:center; max-width:640px; margin:0 0 30px; }
+.search svg { position:absolute; left:16px; width:18px; height:18px; color:var(--muted); pointer-events:none; }
+.search input { width:100%; font:inherit; font-size:17px; color:var(--ink); background:var(--soft); border:1px solid var(--line); border-radius:14px; padding:14px 48px 14px 46px; outline:none; transition:border-color .15s, box-shadow .15s; -webkit-appearance:none; appearance:none; }
+.search input:focus { border-color:var(--teal); box-shadow:0 0 0 3px color-mix(in srgb, var(--teal) 18%, transparent); background:var(--bg); }
+.search kbd { position:absolute; right:14px; font:600 12px "Inter",sans-serif; color:var(--muted); border:1px solid var(--line); border-radius:6px; padding:1px 7px; background:var(--bg); }
+.search input:focus + kbd, .search input:not(:placeholder-shown) + kbd { display:none; }
+@media (max-width:560px) { .search kbd { display:none; } .search input { padding-right:16px; } }
+.hs-results { display:grid; gap:10px; max-width:760px; }
+.hs-count { color:var(--muted); margin:0 0 4px; font-size:15px; }
+.hs-hit { display:grid; gap:4px; padding:14px 16px; border:1px solid var(--line); border-radius:12px; text-decoration:none; color:var(--ink); }
+.hs-hit:hover, .hs-hit:focus-visible { border-color:color-mix(in srgb, var(--teal) 45%, var(--line)); outline:none; }
+.hs-meta { display:flex; gap:8px; font-size:12px; font-weight:600; }
+.hs-app { color:var(--teal); }
+.hs-type { color:var(--muted); }
+.hs-snip { color:var(--muted); font-size:.94rem; line-height:1.45; }
+.hs-hit mark { background:color-mix(in srgb, var(--mint) 35%, transparent); color:inherit; border-radius:3px; padding:0 1px; }
+.hs-more { color:var(--muted); font-size:15px; margin:8px 0 0; }
+.apps { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:14px; }
+.appcard { display:flex; flex-direction:column; gap:10px; padding:22px; border:1px solid var(--line); border-radius:16px; text-decoration:none; color:var(--ink); transition:border-color .2s, transform .2s, box-shadow .2s; }
+.appcard:hover { border-color:color-mix(in srgb, var(--teal) 45%, var(--line)); transform:translateY(-2px); box-shadow:0 12px 28px -20px rgba(0,0,0,.35); }
+.apptop strong { font:700 1.3rem/1.2 "Inter Tight","Inter",sans-serif; letter-spacing:-0.02em; }
+.appdesc { color:var(--muted); font-size:.95rem; line-height:1.45; }
+.appcount { font-size:13px; font-weight:600; color:var(--muted); }
+.applist { display:flex; flex-wrap:wrap; gap:6px; }
+.applist span { font-size:13px; padding:3px 10px; border-radius:99px; background:var(--soft); border:1px solid var(--line); }
+.appgo { margin-top:auto; padding-top:4px; color:var(--teal); font-weight:600; font-size:15px; }
+.tabs { display:flex; gap:6px; overflow-x:auto; scrollbar-width:none; margin:0 0 26px; padding:4px; border:1px solid var(--line); border-radius:12px; width:fit-content; max-width:100%; }
+.tab { white-space:nowrap; flex:none; padding:7px 14px; border-radius:9px; text-decoration:none; color:var(--muted); font-weight:600; font-size:15px; }
+.tab:hover { color:var(--ink); }
+.tab.on { background:var(--soft); color:var(--ink); box-shadow:inset 0 0 0 1px var(--line); }
+.tab .soon { margin-left:4px; font-size:.66rem; padding:1px 6px; }
+details[open] summary { color:var(--teal); }
+[hidden] { display:none !important; }
+main.wrap { padding-top:40px; padding-bottom:72px; }
+@media (max-width:560px) { main.wrap { padding-top:24px; } .tab { padding:7px 11px; font-size:14px; } }
 </style>
 </head>
 <body>
 <nav class="nav" aria-label="Main"><div class="wrap">
   <a class="brand" href="/" aria-label="Vantly home"><svg viewBox="12 9 40 48" aria-hidden="true"><g transform="translate(1.5 6)"><path d="M16 20 L30 46 L41 25 C45 17 42 11 35 11 L31 11" fill="none" stroke="#0F6E56" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 11 L32 6 L32 16 Z" fill="#5DCAA5" stroke="#5DCAA5" stroke-width="2" stroke-linejoin="round"/></g></svg> vantly</a>
-  <a class="crumb" href="/help">Help center</a>
-  <div class="links"><a href="/returns/">Returns</a><a href="/cancellations/">Cancellations</a><a href="/help">Help</a></div>
+  <div class="trail"><span class="sep">/</span><a class="crumb" href="/help/">Help center</a><span class="sep">/</span><a class="crumb" href="/help/returns/">Returns</a></div>
+  <div class="links"><a href="/returns/">Returns</a><a href="/cancellations/">Cancellations</a><a href="/help/">Help</a></div>
 </div></nav>
 <main class="wrap">
 <article class="article">
+
 <h1>The return portal</h1>
 <p class="lede">Templates, colors, logo, text, and your return policy.</p>
 
@@ -84,9 +128,10 @@ footer { border-top:1px solid var(--line); padding:28px 0 40px; color:var(--mute
 <h2>Where customers find it</h2>
 <p>The portal lives at <code>yourstore.com/apps/returns</code>. Add the <strong>Start a return</strong> block to your theme (see <a href="/help/getting-started">Getting started</a>) or link it from your menu.</p>
 
-<p class="more">Next: <a href="/help/rules">Return rules</a> · Questions? <a href="mailto:support@vantlyapps.com">support@vantlyapps.com</a></p>
+<p class="more">Next: <a href="/help/rules">Return rules</a> · <a href="/help/returns/">All Returns help</a> · Questions? <a href="mailto:support@vantlyapps.com">support@vantlyapps.com</a></p>
 </article>
 </main>
 <footer><div class="wrap">© 2026 Vantly · <a href="/">vantlyapps.com</a> · <a href="/returns/">Returns</a> · <a href="/cancellations/">Cancellations</a> · <a href="/privacy">Privacy</a></div></footer>
+
 </body>
 </html>
