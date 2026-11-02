@@ -467,6 +467,8 @@ DISCOUNT_ARTICLES = [
 <li>Turn on <strong>Test mode</strong>, add products to your cart as a customer tagged <code>test</code>, and check the price.</li>
 </ol>
 <p>The discount also shows in Shopify's own discount list, and opening it there brings you back to Vantly's editor.</p>
+<h2>Change a saved discount</h2>
+<p>Open the discount and make your changes. Shopify's save bar appears at the top as soon as something changes: click <strong>Save</strong> to update the discount in Shopify, or <strong>Discard</strong> to go back to what was saved. To remove a cart group or proposal, click its trash button in the list; it's gone once you click Save. A group that proposals use asks first: click <strong>Delete group</strong> or <strong>Keep</strong>.</p>
 """,
     },
     {
@@ -571,6 +573,7 @@ DISCOUNT_FAQ = [
     ("Why does Summary say the discount works on carts up to a number of items?", "Every collection and tag a discount checks is sent along with every item in the cart, and Shopify caps how much it sends. Checking many collections or tags lowers the biggest cart the discount still works on. Check fewer collections or tags, or combine them into one."),
     ("What does the Free plan include?", "Every feature, with one discount turned on at a time (live or scheduled). A discount you add while one is already on is saved but stays off, marked Needs attention, until you upgrade or end the other one. Discounts that are already on keep working."),
     ("How do I upgrade to Pro?", "Open Settings > Plan and billing and click Upgrade to Pro. Shopify shows its plan page; Pro starts with a 14-day free trial and is billed through your Shopify invoice. Pro runs as many discounts as you like."),
+    ("How do I delete a proposal or cart group?", "Open the discount and click the trash button on its row, then click Save in Shopify's save bar. If proposals still use a group, Vantly asks first (Delete group or Keep), and those proposals stop checking it. Discard brings it back if you haven't saved."),
     ("Does it slow down checkout?", "No. The discount runs inside Shopify's checkout as a Shopify Function; it never waits on Vantly's servers."),
 ]
 
